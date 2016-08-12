@@ -1,0 +1,11 @@
+---
+title: 'Visualization'
+author: "Brian A. Fannin"
+output:
+  slidy_presentation:
+    duration: 45
+    fig_height: 3
+    fig_width: 6
+  beamer_presentation:
+    colortheme: dolphin
+---

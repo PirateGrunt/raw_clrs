@@ -1,0 +1,19 @@
+---
+title: 'Introduction'
+author: "Brian A. Fannin"
+output:
+  slidy_presentation:
+    duration: 45
+    fig_height: 3
+    fig_width: 6
+  beamer_presentation:
+    colortheme: dolphin
+---
+
+##  {.flexbox .vcenter}
+
+> "Relax and embrace the chaos that is R."
+
+Patrick Burns
+  
+[www.burns-stat.com/pages/Present/infernoishR_annotated.pdf](www.burns-stat.com/pages/Present/infernoishR_annotated.pdf)
