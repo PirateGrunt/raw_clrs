@@ -11,19 +11,19 @@ output:
 ---
 
 ## Review
-* 10_GettingStarted
-* 20_BasicData: variables, statistics, tables, 
-* 30_Visualization: ggplots
-* 40_ChainLadder: triangles, more plots
-* 50_OtherReserving: triangles, more plots
+1. GettingStarted
+2. BasicData: variables, statistics, tables, 
+3. Visualization: ggplots
+4. ChainLadder: triangles, more plots
+5. OtherReserving: triangles, more plots
 
 
-## Reorganize 
-*	Data import and cleaning: read.csv()
-*	Data summary: summary()
-*	Visualization: ggplot()
-*	Chainladder:
-*	Compare with other reserving: 
+## to create a project, organize the functions
+1. Data import and cleaning: read.csv()
+2. Data summary: summary()
+3. Visualization: ggplot()
+4. Chainladder:
+5. Compare with other reserving: 
 
 ## Option A
 1. Calculate the new objects, such as statistics, new variables, tables, graphs and etc.
@@ -37,10 +37,12 @@ output:
 ## Introduction
 RMarkdown is a format that combines R code chunks with markdown syntax (a plain text format) 
 
-From the output (PDF, HTML, Word)
+in a rmd file, there are 3 components
 
-1. R: tables, plots, regressions
-2. Markdown: headers(different sizes), dashes, equations, imagess, lists, shiny, rcharts  
+* format (control the first page and the output format PDF, HTML, Word)
+* r chunk: tables, plots, regressions
+* plain text format markdown symtax: headers(different sizes), dashes, equations, imagess, lists, jpg
+
 
 ## Different
 
@@ -53,47 +55,41 @@ Since R Markdown has more advantages then R script, it has to be different.
 5. take advatange of Templates
 
 
-## Installation and Basis
+## Installation 
 1. download from https://www.rstudio.com/products/rstudio/download/.
-2. 
+2. jpg
    > install.packages(“rmarkdown”)
    > library(“rmarkdown”)
 
 3. open a tempalte rmd. (creating HTML output, for example) 
 4. run R codes, Knit HTML, Knit PDF or Knit Word
 
+## More Details: 1. Format
+---
+title: 'RMarkdown'
+author: "Emma Li"
+output: html_document
+---
+
+## More Details: 2. R chunk:
+'''
+exactly the same for tables, plots, regressions
+'''
+
+## More Details: 3. plain text format
+headers(different sizes), 
+dashes, 
+equations, 
+imagess, 
+lists, 
+jpg
+echo
+
+## Example: reorganize the syntax I show you
+jpg. (rmd frmo read.csv to reserving)
 
 
-## Build our project
-*	Data import and cleaning: read.csv()
-*	Data summary: summary()
-*	Visualization: ggplot()
-*	Chainladder:
-*	Compare with other reserving: 
+## Example: output
+jpg.
 
-## Data import and cleaning: read.csv()
-```{r cars}
-summary(cars)
-```
-
-## Data summary: summary()
-```{echo=FALSE}
-summary(cars)
-```
-
-## Visualization: ggplot()
-```
-summary(cars)
-```
-
-## Chainladder:
-```
-summary(cars)
-```
-
-## Compare with other reserving: 
-```
-summary(cars)
-```
-
-
+## Q & A
