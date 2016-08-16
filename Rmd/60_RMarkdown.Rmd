@@ -9,3 +9,91 @@ output:
   beamer_presentation:
     colortheme: dolphin
 ---
+
+## Review
+* 10_GettingStarted
+* 20_BasicData: variables, statistics, tables, 
+* 30_Visualization: ggplots
+* 40_ChainLadder: triangles, more plots
+* 50_OtherReserving: triangles, more plots
+
+
+## Reorganize 
+*	Data import and cleaning: read.csv()
+*	Data summary: summary()
+*	Visualization: ggplot()
+*	Chainladder:
+*	Compare with other reserving: 
+
+## Option A
+1. Calculate the new objects, such as statistics, new variables, tables, graphs and etc.
+2. Copy and paste in PowerPoint. 
+
+## Option B
+1. Create a pipeline and R Markdown
+2. Output it to PDF, Word or HTML
+
+
+## Introduction
+RMarkdown is a format that combines R code chunks with markdown syntax (a plain text format) 
+
+From the output (PDF, HTML, Word)
+
+1. R: tables, plots, regressions
+2. Markdown: headers(different sizes), dashes, equations, imagess, lists, shiny, rcharts  
+
+## Different
+
+Since R Markdown has more advantages then R script, it has to be different.
+
+1. Only can be run in RStudio IDE	
+2. rmd file
+3. R codes should be written in chunks 
+4. You can run R codes, Knit HTML, Knit PDF or Knit Word
+5. take advatange of Templates
+
+
+## Installation and Basis
+1. download from https://www.rstudio.com/products/rstudio/download/.
+2. 
+   > install.packages(“rmarkdown”)
+   > library(“rmarkdown”)
+
+3. open a tempalte rmd. (creating HTML output, for example) 
+4. run R codes, Knit HTML, Knit PDF or Knit Word
+
+
+
+## Build our project
+*	Data import and cleaning: read.csv()
+*	Data summary: summary()
+*	Visualization: ggplot()
+*	Chainladder:
+*	Compare with other reserving: 
+
+## Data import and cleaning: read.csv()
+```{r cars}
+summary(cars)
+```
+
+## Data summary: summary()
+```{echo=FALSE}
+summary(cars)
+```
+
+## Visualization: ggplot()
+```
+summary(cars)
+```
+
+## Chainladder:
+```
+summary(cars)
+```
+
+## Compare with other reserving: 
+```
+summary(cars)
+```
+
+
