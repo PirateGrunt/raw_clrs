@@ -45,10 +45,60 @@ Raise your hand if you need help installing
 
 <img src="images/OptionsPanes.png" alt="OptionsPanes" style="width: 400px;"/>
 
-<div>
-...
-</div>
-
-<img src="images/MyLayout.png" alt="MyLayout" style="width: 400px;"/>
+Options like "VCS" and "Packages" will make sense to you later (but not today).
 
 </div>
+
+## 
+
+This is my preferred layout.
+
+<img src="images/MyLayout.png" alt="MyLayout" style="width: 800px;"/>
+
+
+## 
+
+<div class="columns-2">
+
+General options
+
+<img src="images/GeneralOptions.png" alt="MyLayout" style="width: 400px;"/>
+
+Appearance
+
+<img src="images/OptionsAppearance.png" alt="MyLayout" style="width: 400px;"/>
+
+</div>
+
+## Editing a script
+
+## The console
+
+You can also execute lines from the console. 
+
+Don't do this.
+
+## One other thing you should ignore
+
+.Rdata & .Rhistory
+
+## The working directory
+
+## Look at basic script
+
+## Task
+
+1. Close down RStudio
+2. Open it up again
+3. Find your script
+4. Run it
+5. Change the script so that you produce 10,000 observations
+6. Change the error term so that 
+7. Make the errors heteroskedastic
+8. Make the response term, Y, lognormal
+6. Run that script
+
+
+</div>
+
+## Task2
