@@ -12,84 +12,132 @@ output:
 
 ## Review
 1. GettingStarted
-2. BasicData: variables, statistics, tables, 
+2. BasicData: variables tranformation, statistics, tables, data frames
 3. Visualization: ggplots
 4. ChainLadder: triangles, more plots
 5. OtherReserving: triangles, more plots
 
 
-## to create a project, organize the functions
+## Create a New Project
 1. Data import and cleaning: read.csv()
 2. Data summary: summary()
 3. Visualization: ggplot()
-4. Chainladder:
+4. Chainladder
 5. Compare with other reserving: 
 
-## Option A
-1. Calculate the new objects, such as statistics, new variables, tables, graphs and etc.
-2. Copy and paste in PowerPoint. 
+## Implementation
+* Option A
+    + Calculate the new R objects, such as statistics, new variables, tables, plotss and etc.
+    + Copy and paste in PowerPoint. 
 
-## Option B
-1. Create a pipeline and R Markdown
-2. Output it to PDF, Word or HTML
+* Option B
+    + Create a RMarkdown including R objects and markdown syntax (a plain text format)
+    + Output to PDF, Word or HTML
 
-
-## Introduction
-RMarkdown is a format that combines R code chunks with markdown syntax (a plain text format) 
-
-in a rmd file, there are 3 components
-
-* format (control the first page and the output format PDF, HTML, Word)
-* r chunk: tables, plots, regressions
-* plain text format markdown symtax: headers(different sizes), dashes, equations, imagess, lists, jpg
+R                                          | R Markdown
+-------------------------------------------|-------------------------------------------
+Run in R base system or RStudio            |Run in RStudio 
+R. file                                    |rmd. file       
+R codes without markdown syntax            |R codes written in chunks or inline   
+"Run" (Control+R for Shortcut)             |"Run" or "Knit HTML" or "Knit PDF" or "Knit Word"
 
 
-## Different
+## Introduction of RMarkdown
+* RMarkdown is a format that combines R syntax with markdown syntax
 
-Since R Markdown has more advantages then R script, it has to be different.
+* We can create rmd. file in RStudio 
 
-1. Only can be run in RStudio IDE	
-2. rmd file
-3. R codes should be written in chunks 
-4. You can run R codes, Knit HTML, Knit PDF or Knit Word
-5. take advatange of Templates
+* In a rmd. file, there are 3 components
+
+    + YAML Header: what type of document to build (JPG)
+    ![](0. YAML Header.png)
+
+    + R Chunk: tables, plots, regressions(JPG)
+    ![](0. R Chunk.png)
+    
+    + Markdown Symtax: headers, dashes, equations, imagess, lists, jpg, tables(JPG)
+    ![](0. Markdown Symtax.png)
 
 
-## Installation 
-1. download from https://www.rstudio.com/products/rstudio/download/.
-2. jpg
-   > install.packages(“rmarkdown”)
-   > library(“rmarkdown”)
+## Installation and Basic
+1. Open an R. file and install rmarkdown packages from CRAN 
 
-3. open a tempalte rmd. (creating HTML output, for example) 
-4. run R codes, Knit HTML, Knit PDF or Knit Word
+![](1. Install rmarkdown.png)
 
-## More Details: 1. Format
----
-title: 'RMarkdown'
-author: "Emma Li"
-output: html_document
----
+## Installation and Basic 
+2. Open an rmd. file which creats HTML output
 
-## More Details: 2. R chunk:
-'''
-exactly the same for tables, plots, regressions
-'''
+![](2. Open R Markdown.png)
 
-## More Details: 3. plain text format
-headers(different sizes), 
-dashes, 
-equations, 
-imagess, 
-lists, 
-jpg
-echo
+![](2. Chose HTML.png)
 
-## Example: reorganize the syntax I show you
+## Installation and Basic 
+3. Run R codes, Knit HTML, Knit PDF or Knit Word
+![](3. Run.png)
+
+## 1. YAML Header
+![](4. 1. YAML.png)
+
+* Embeded with lines of 3 dashes
+
+* Change title, name and date 
+
+* Change output from "html_document" to "word_document" or "pdf_document""
+
+
+## 2. R Chunk
+![](4. 2. R Chunk.png)
+
+* Replace template codes with your codes
+    copy and paste
+
+
+* Chunk options, http://yihui.name/knitr/options/
+
+    + echo=FASLE: turn off the R source code in the output file
+
+    + warning=FALSE: print warnings in the console instead of the output document
+
+    + error=FALSE: stop the evaluation on errors
+    
+
+* Besides, inline code
+
+jpg:There were `r nrow(data)` observations.
+
+
+## 3. Markdown Syntax
+![](4. 3. Markdown Syntax.png)
+
+* Headers
+jpg:: "##"
+
+* Star
+jpg:
+
+* Block Quote
+jpg:
+
+* Equations
+jpg: $A = \pi*r^{2}$ 
+
+* Imagess (jpg. or png. files) 
+jpg:"![](plot.png"
+
+* Unordered Lists, *
+jpg:
+
+* Ordered Lists, 1.
+jpg:
+
+* Tables
+jpg:
+
+## Example: Reorder the codes I just show you
 jpg. (rmd frmo read.csv to reserving)
 
 
-## Example: output
+## Example: Output
 jpg.
 
 ## Q & A
