@@ -49,13 +49,13 @@ R codes without markdown syntax            |R codes written in chunks or inline
 
 * In a rmd. file, there are 3 components
 
-    + YAML Header: what type of document to build (JPG)
+    + 1. YAML Header: what type of document to build (JPG)
     ![](0. YAML Header.png)
 
-    + R Chunk: tables, plots, regressions(JPG)
+    + 2. R Chunk: tables, plots, regressions(JPG)
     ![](0. R Chunk.png)
     
-    + Markdown Symtax: headers, dashes, equations, imagess, lists, jpg, tables(JPG)
+    + 3. Markdown Symtax: headers, dashes, equations, imagess, lists, jpg, tables(JPG)
     ![](0. Markdown Symtax.png)
 
 
