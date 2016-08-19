@@ -1,10 +1,8 @@
 ---
-title: 'Introduction'
+title: 'Basic Data Manipulation'
 author: "Brian A. Fannin"
 output:
-  ioslides_presentation:
-    transition: faster
-    widescreen: true
+  slidy_presentation:
     duration: 45
     fig_height: 3
     fig_width: 6
