@@ -22,10 +22,10 @@ Patrick Burns
 
 ## Goals for session one
 
-> - Make sure that R and RStudio are installed
-> - Get used to the RStudio environment
-> - Create a script
-> - Install a package
+* Make sure that R and RStudio are installed
+* Get used to the RStudio environment
+*  Create a script
+*  Install a package
 
 ## Installation {.flexbox .vcenter}
 
@@ -70,35 +70,98 @@ Appearance
 
 </div>
 
+## Excel and R
+
+|             | Excel            |                                   R  |
+|-------------|------------------------------|--------------------------|
+| File format | .xlsx                                     |                           .R/.Rmd/.Rnw |
+| Data        | Stored in the file, or available via .odc | _Always_ read in externally or constructed programatically |
+| Extensions  | .xlam                                     | Packages   |
+
 ## Editing a script
 
-## The console
+```{r eval=FALSE, echo=TRUE}
+N <- 100
+B0 <- 5
+B1 <- 1.5
 
-You can also execute lines from the console. 
+set.seed(1234)
+e <- rnorm(N, mean = 0, sd = 1)
+X <- rep(seq(1, 10), 10)
 
-Don't do this.
+Y <- B0 + B1 * X + e
 
-## One other thing you should ignore
-
-.Rdata & .Rhistory
-
-## The working directory
-
-## Look at basic script
+plot(X, Y)
+```
 
 ## Task
 
+1. Run the script
+2. Save it
 1. Close down RStudio
 2. Open it up again
 3. Find your script
 4. Run it
 5. Change the script so that you produce 10,000 observations
-6. Change the error term so that 
 7. Make the errors heteroskedastic
 8. Make the response term, Y, lognormal
 6. Run that script
 
+## Packages {.flexbox .vcenter}
 
-</div>
+## What's a package?
 
-## Task2
+* Allows any user to extend R's capabilities
+* Must conform to a well-defined standard
+* Easy to install and update
+* Open source means users may test and improve the code
+* Can access C or FORTRAN run-time libraries to improve performance
+
+## Installation and loading
+
+Installing something new
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+
+Loading an installed package
+
+```{r eval=FALSE}
+library(MRMR)
+```
+
+## Unloading and/or removing installed package
+
+Unloading
+
+```{r eval=FALSE}
+detach("package:MRMR", unload = TRUE)
+```
+
+Removing
+
+```{r eval=FALSE}
+remove.packages("IdontWantThisAnymore")
+```
+
+## Don't make this complicated
+
+Installation ~ Copying a file to your computer
+
+`library` ~ Opening a file = Placing a file into RAM
+
+Detaching a package ~ Closing a file
+
+Removing a package ~ Deleting a file
+
+>- _A package won't work if it isn't loaded with `library`._
+>- _You can't load a package if you haven't installed it._
+>- _You don't need to install a package more than once._
+>- _Turning off your computer or shutting down R won't remove a package._
+>- _Unloading a package doesn't delete it._
+
+## Exercise
+
+Install the `actuar` package.
