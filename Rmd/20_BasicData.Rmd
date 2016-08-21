@@ -9,3 +9,91 @@ output:
   beamer_presentation:
     colortheme: dolphin
 ---
+
+##
+
+1. Brief review of vector operations
+2. Data frames
+3. Reading and writing data
+
+## Vector review
+
+```{r}
+library(raw)
+data(NJM_WC)
+
+ay <- NJM_WC$AccidentYear
+lag <- NJM_WC$Lag
+dy <- NJM_WC$DevelopmentYear
+ibnr <- NJM_WC$IBNR
+paidLoss <- NJM_WC$CumulativePaid
+incurredLoss <- NJM_WC$CumulativeIncurred
+
+summary(paidLoss)
+```
+
+## Quick task
+
+1. How much IBNR was held for development year 1997?
+2. What was the case reserve held for accident year 1990 development lag 4?
+
+## Answer
+
+```{r}
+sum(ibnr[dy == 1997])
+
+whichCell <- ay == 1990 & lag == 4
+
+incurredLoss[whichCell] - paidLoss[whichCell]
+
+whichCell
+```
+
+## Data frames
+
+A data frame is a set of vectors. This is basically the same concept as a table in Excel or a relational database.
+
+```{r results='hide'}
+class(NJM_WC)
+
+summary(NJM_WC)
+str(NJM_WC)
+```
+
+## 
+
+## Saving data
+
+```{r}
+write.csv(NJM_WC, "MyData.csv", row.names = FALSE)
+```
+
+## Reading data
+
+```{r}
+dfMyData <- read.csv("MyData.csv", stringsAsFactors = FALSE)
+
+all.equal(NJM_WC, dfMyData)
+
+class(NJM_WC)
+```
+
+## The working directory
+
+## 
+
+```{r}
+
+```
+
+## Task
+
+* Subset the New Jersey Manufacturer's data to show only claims from 1990
+* Form a data frame which does not show the GroupCode or Company columns
+<!--
+## The console
+
+> - You can also execute lines from the console. 
+
+> - You rarely want to do this.
+-->
