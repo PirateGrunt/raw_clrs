@@ -2,8 +2,8 @@
 title: 'ChainLadder'
 author: "Rajesh Sahasrabuddhe"
 output:
- 
   ioslides_presentation:
+    logo: images\cas_logo.png
     duration: 45
     fig_height: 3
     fig_width: 6
@@ -13,7 +13,13 @@ output:
     colortheme: dolphin
 ---
 
-## What is this 'ChainLadder'
+## Agenda
+
+- The ChainLadder package
+- The Trian
+
+
+## What is this 'ChainLadder'?
 
 The `ChainLadder` package provides various statistical methods which are typically used for the estimation of outstanding claims reserves in general insurance, including those to estimate the claims development results as required under Solvency II.  
 
@@ -22,7 +28,7 @@ library(ChainLadder)
 citation('ChainLadder')$textVersion
 ```
 
-## What is this 'ChainLadder'
+## What is this 'ChainLadder'?
 
 Authors:  
 <div class="columns-2">
@@ -34,8 +40,8 @@ Authors:
 - [Prof. Dr. Mario V. Wüthrich](https://people.math.ethz.ch/~wueth/)  
 </div>
 
+Github site:
 
-Github site:  
 - [https://github.com/mages/ChainLadder](https://github.com/mages/ChainLadder)
 
 
@@ -46,6 +52,8 @@ Functions to ease the work with triangle shaped matrix data. A 'triangle' is a m
 ```{r}
 head(GenInsLong)
 ```
+
+qpaid 
 
 ## The Triangle Class
 
@@ -67,8 +75,8 @@ str(gen_ins_tri)
 ```{r}
 gen_ins_tri[,1:8]
 ```
-
-## Excercise 1
+ 
+## Exercise 1
 1. Load the `ChainLadder` and `raw` packages
 2. For the `NJM_WC` dataset:
     - Create an `R` object with class `triangle` and `matrix` with the incurred loss data
@@ -77,7 +85,7 @@ gen_ins_tri[,1:8]
     - Create an `R` object with class `data.frame` or `tbl_df` with the observed development factors for further examination
     - Using plotting (i.e. data visualization) tools only identify the accident year that results in the largest 2:3 development factor.
     
-## Excercise 1
+## Exercise 1
 
 ```{r, message=FALSE, warning=FALSE}
 library(ChainLadder)
@@ -90,20 +98,26 @@ library(ggplot2)
 
 class(NJM_WC)
 
+```
+
+## Exercise 1
+```{r}
 njm_wc_tri <- NJM_WC %>% 
   dplyr::filter(DevelopmentYear <= 1997) 
 class(njm_wc_tri)
 
 ```
-## Excercise 1
+
+
+
+## Exercise 1
 ```{r}
 njm_wc_tri <- as.triangle(Triangle = njm_wc_tri, origin = 'AccidentYear', 
   dev = 'Lag', value =  'CumulativeIncurred'); njm_wc_tri[,1:8]
 
 ```
 
-    
-## Excercise 1    
+## Exercise 1    
 ```{r}
 class(njm_wc_tri)
 dim(njm_wc_tri)
@@ -111,15 +125,55 @@ njm_wc_df <- njm_wc_tri[,2:10] / njm_wc_tri[,1:9] %>%
   as_tibble()
 njm_wc_df <- dplyr::mutate(njm_wc_df, accident_year = as.character(1988:1997))
 names(njm_wc_df)[1:9] <- paste(1:9, "to", 2:10)
+```
 
+## Exercise 1    
+```{r}
 njm_wc_df <- gather(njm_wc_df, key = interval, value = development_factor, 1:9, 
   na.rm = TRUE)
 
 head(njm_wc_df)
 
+```
+
+## Exercise 1    
+```{r}
 ggplot(data = njm_wc_df, mapping = aes(x = interval, y = development_factor, 
   color = accident_year)) + geom_point()
 
 ```
 
 
+## Actuarial Projection Models
+
+Models Available in `ChainLadder`:
+<div class="columns-2">
+- `BootChainLadder` (`CDR`)
+- `ClarkCapeCod` 
+- `ClarkLDF` 
+- `glmReserve`
+- `MackChainLadder` (`CDR`)  
+- `tweedieReserve`  
+</div>
+- `MultiChainLadder` (Join2Fits)
+- `MunichChainLadder` (Requires Paid and Incurred)
+- `PaidIncurredChain` (Requires Paid and Incurred)
+
+## BootChainLadder
+
+`BootChainLadder(Triangle, R = 999, process.distr=c("gamma", "od.pois"))`
+
+- The BootChainLadder procedure provides a predictive distribution of reserves or IBNRs for a cumulative claims development triangle.
+
+- `process.distr` - character string indicating which process distribution to be assumed. One of "gamma" (default), or "od.pois" (over-dispersed Poisson), can be abbreviated
+
+- _England, PD and Verrall, RJ. Stochastic Claims Reserving in General Insurance (with discussion)_, British Actuarial Journal _8, III. 2002_
+
+
+## Tails
+`ClarkCapeCod` and `ClarkLDF`
+`tail ~ c("G", "maxage")
+
+
+## Selected Loss Development Factors
+`CLFMdelta`
