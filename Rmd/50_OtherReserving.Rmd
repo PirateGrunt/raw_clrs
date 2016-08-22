@@ -9,3 +9,149 @@ output:
   beamer_presentation:
     colortheme: dolphin
 ---
+
+```{r}
+knitr::opts_knit$set(root.dir = "../")
+```
+
+## Reserving w/o ChainLadder
+
+1. What is the additive model?
+2. Form incremental and prior cumulative amounts
+3. Fit a linear model
+4. Compare our fits
+
+## The additive model
+
+* Incremental development amounts are a linear function of some exposure measure.
+* Similar to Bornhuetter-Ferguson, but doesn't require an a priori loss ratio assumption.
+* Doesn't expect it to work as well if earned premium has not been on-leveled.
+
+## Form incrementals
+
+```{r}
+library(dplyr)
+
+dfUpper <- read.csv("./data/upper.csv", stringsAsFactors = FALSE) %>% 
+  arrange(AccidentYear, Lag) %>% 
+  mutate(IncrementalPaid = CumulativePaid - lag(CumulativePaid)
+         , IncrementalPaid = ifelse(Lag == 1, CumulativePaid, IncrementalPaid)
+         , PriorCumulativePaid = lag(CumulativePaid)
+         , PriorCumulativePaid = ifelse(Lag == 1, NA, PriorCumulativePaid))
+```
+
+## Check our data
+
+```{r }
+dfCheck <- dfUpper %>% 
+  group_by(AccidentYear) %>% 
+  mutate(Check = cumsum(IncrementalPaid)) %>% 
+  filter(Check != CumulativePaid)
+```
+
+## Lag is a category - not an integer
+
+```{r}
+dfUpper <- dfUpper %>% 
+  mutate(LagGroup = factor(Lag))
+```
+
+
+## Observe our data - additive
+
+```{r}
+library(ggplot2)
+
+plt <- ggplot(dfUpper, aes(NetEP, IncrementalPaid, color = LagGroup)) + geom_point()
+plt <- plt + geom_smooth(method = "lm", se = FALSE)
+plt
+```
+
+## Your turn
+
+Create a similar plot that uses `PriorCumulativePaid` as the predictor variable.
+
+## Observe our data - chain ladder
+
+```{r}
+
+plt <- ggplot(dfUpper, aes(PriorCumulativePaid, IncrementalPaid, color = LagGroup)) + geom_point()
+plt <- plt + geom_smooth(method = "lm", se = FALSE)
+plt
+```
+
+## Fit a model
+
+```{r}
+fitPaidAM <- lm(data = dfUpper
+                , IncrementalPaid ~ 0 + NetEP:LagGroup)
+```
+
+## 
+
+```{r}
+summary(fitPaidAM)
+```
+
+## Your turn
+
+* Construct a linear fit which uses prior cumulative paid as the predictor
+
+## 
+
+```{r}
+fitPaidCL <- lm(data = dfUpper
+                , IncrementalPaid ~ 0 + PriorCumulativePaid:LagGroup)
+```
+
+##
+
+```{r}
+summary(fitPaidCL)
+```
+
+## Predictions and residuals
+
+```{r}
+dfUpper <- dfUpper %>% 
+  mutate(PredictedPaidAM = predict(fitPaidAM)
+         , ResidualPaidAM = residuals(fitPaidAM)
+         , R_StandardPaidAM = rstandard(fitPaidAM))
+```
+
+
+## Plots
+
+* Plot the residuals as a function of the predicted value.
+* Plot the residuals as a function of accident year, lag and development year
+
+## Plots (cont'd)
+
+```{r}
+pltResid <- ggplot(dfUpper, aes(PredictedPaidAM, R_StandardPaidAM)) + geom_point()
+pltResid
+
+pltResid + geom_smooth(method = "lm")
+```
+
+
+## Model comparison
+
+* Which model has a better r^2?
+* Which model has a better F statistic?
+* What should we consider when comparing our models? How could adjust for this?
+
+## Tasks
+
+* Form incrementals and priors for the completed triangle for NJM_WC
+* Predict values for each cell using the fit you constructed _on the upper triangle_.
+* Which model performs better?
+
+## MRMR
+
+The functionality above is incorporated in the MRMR package. The beta version is on GitHub and may be installed using the following:
+
+```{r}
+
+```
+
