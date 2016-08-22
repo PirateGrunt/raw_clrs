@@ -16,7 +16,9 @@ output:
 ## Agenda
 
 - The ChainLadder package
-- The Trian
+- The Triangle Class
+- Models available in ChainLadder
+- Other Topics
 
 
 ## What is this 'ChainLadder'?
@@ -52,8 +54,6 @@ Functions to ease the work with triangle shaped matrix data. A 'triangle' is a m
 ```{r}
 head(GenInsLong)
 ```
-
-qpaid 
 
 ## The Triangle Class
 
@@ -159,6 +159,19 @@ Models Available in `ChainLadder`:
 - `MunichChainLadder` (Requires Paid and Incurred)
 - `PaidIncurredChain` (Requires Paid and Incurred)
 
+## How do I use these models?
+
+1. Read the help function  
+    - Understand the arguments  
+2. Apply the function and assign the result to an object  
+3. Understand the output  
+    - `str`
+    - `summary`
+    - `plot`  
+4. Extract what you need 
+    - S3 class `[`
+    - S4 class `$`
+
 ## BootChainLadder
 
 `BootChainLadder(Triangle, R = 999, process.distr=c("gamma", "od.pois"))`
@@ -177,3 +190,6 @@ Models Available in `ChainLadder`:
 
 ## Selected Loss Development Factors
 `CLFMdelta`
+
+## Incomplete Traingles
+`qpaid`
