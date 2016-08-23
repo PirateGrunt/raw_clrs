@@ -82,7 +82,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 <img src="images/3. Run.png" alt="OptionsPanes" style="width: 400px;"/>
 ![](3. Run.png)
 
-## 1. YAML Header
+## 1 YAML Header
 
 Open 60_RMarkdown Example Unordered.rmd
 
@@ -99,7 +99,7 @@ Open 60_RMarkdown Example Unordered.rmd
 
 * YAML options, http://rmarkdown.rstudio.com/pdf_document_format.html
 
-## 2. R Chunk
+## 2 R Chunk
 
 Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 
@@ -118,10 +118,9 @@ Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 
 * Besides, inline codes outside of the R chunks can still print results
 
-    <img src="images/4. 2. R Chunk inlin.png" alt="OptionsPanes" style="width: 400px;"/>
-    + ![](4. 2. R Chunk inline.png) can print ![](4. 2. R Chunk inline 2.png)
-
-## 3. Markdown Syntax
+    <img src="images/4. 2. R Chunk inlin.png" alt="OptionsPanes" style="width: 400px;"/> can print <img src="images/4. 2. R Chunk inlin 2.png" alt="OptionsPanes" style="width: 400px;"/>
+    
+## 3 Markdown Syntax
 
 Kit PDF by  60_RMarkdown Example Unordered.rmd
 
