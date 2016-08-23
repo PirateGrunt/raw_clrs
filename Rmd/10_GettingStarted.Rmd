@@ -1,8 +1,9 @@
 ---
-title: 'Basic Data Manipulation'
+title: 'Getting Started'
 author: "Brian A. Fannin"
 output:
-  slidy_presentation:
+  ioslides_presentation:
+    logo: images/cas_logo.png
     duration: 45
     fig_height: 3
     fig_width: 6
@@ -22,8 +23,13 @@ Patrick Burns
 
 * Make sure that R and RStudio are installed
 * Get used to the RStudio environment
-*  Create a script
-*  Install a package
+* Create a script
+    * Simulate normal random variable
+    * Construct a new variable
+    * Construct a data frame
+    * Fit a linear model
+    * Plot
+* Install a package
 
 ## Installation {.flexbox .vcenter}
 
@@ -68,6 +74,17 @@ Appearance
 
 </div>
 
+## Help
+
+Use it early and often.
+
+```{r eval=FALSE}
+?lm
+??cluster
+```
+
+If you don't, expect to get familiar with this abbreviation: [RTFM](https://en.wikipedia.org/wiki/RTFM)
+
 ## Excel and R
 
 |             | Excel            |                                   R  |
@@ -90,6 +107,8 @@ X <- rep(seq(1, 10), 10)
 Y <- B0 + B1 * X + e
 
 plot(X, Y)
+
+myFit <- lm(Y ~ X)
 ```
 
 ## Task
@@ -163,3 +182,8 @@ Removing a package ~ Deleting a file
 ## Exercise
 
 Install the `actuar` package.
+
+## A couple final thoughts
+
+* Try not to work in the console. Write code in scripts.
+* .Rdata and History look like they might be helpful. They rarely (never) are. Stick to scripts.
