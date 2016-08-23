@@ -139,7 +139,6 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 * Image
 
 <img src="images/4. 3. Markdown Syntax images.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax images.png)
 
 * Unordered List
 
