@@ -47,6 +47,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 
     + 1. YAML Header: what type of document to build 
     
+    <img src="images/0. YAML Header.png" alt="OptionsPanes" style="width: 400px;"/>
     ![](0. YAML Header.png)
 
     + 2. R Chunk: tables, plots, regressions by R source codes
