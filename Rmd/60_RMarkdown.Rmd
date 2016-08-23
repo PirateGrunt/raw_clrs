@@ -62,13 +62,13 @@ R codes without markdown syntax |R codes written in chunks or inline
 
 
 ## Installation and Basic
-1. Open an R. file and install rmarkdown packages from CRAN 
+1 Open an R. file and install rmarkdown packages from CRAN 
 
 <img src="images/1. Install rmarkdown.png" alt="OptionsPanes" style="width: 400px;"/>
 ![](1. Install rmarkdown.png)
 
 ## Installation and Basic 
-2. Open an rmd. file which creats HTML output
+2 Open an rmd. file which creats HTML output
 
 <img src="images/2. Open R Markdown.png" alt="OptionsPanes" style="width: 400px;"/>
 ![](2. Open R Markdown.png)
@@ -77,7 +77,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 ![](2. Chose HTML.png)
 
 ## Installation and Basic 
-3. In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
+3 In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
 
 <img src="images/3. Run.png" alt="OptionsPanes" style="width: 400px;"/>
 ![](3. Run.png)
@@ -118,7 +118,9 @@ Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 
 * Besides, inline codes outside of the R chunks can still print results
 
-    <img src="images/4. 2. R Chunk inlin.png" alt="OptionsPanes" style="width: 400px;"/> can print <img src="images/4. 2. R Chunk inlin 2.png" alt="OptionsPanes" style="width: 400px;"/>
+    <img src="images/4. 2. R Chunk inlin.png" alt="OptionsPanes" style="width: 400px;"/> 
+    can print 
+    <img src="images/4. 2. R Chunk inlin 2.png" alt="OptionsPanes" style="width: 400px;"/>
     
 ## 3 Markdown Syntax
 
@@ -136,7 +138,7 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
 * Image
 
-<img src="images/4. 3. Markdown Syntax image.png" alt="OptionsPanes" style="width: 400px;"/>
+<img src="images/4. 3. Markdown Syntax images.png" alt="OptionsPanes" style="width: 400px;"/>
 ![](4. 3. Markdown Syntax images.png)
 
 * Unordered List
