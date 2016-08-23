@@ -48,46 +48,38 @@ R codes without markdown syntax |R codes written in chunks or inline
     + 1. YAML Header: what type of document to build 
     
     <img src="images/0. YAML Header.png" alt="OptionsPanes" style="width: 400px;"/>
-    ![](0. YAML Header.png)
 
     + 2. R Chunk: tables, plots, regressions by R source codes
     
     <img src="images/0. R Chunk.png" alt="OptionsPanes" style="width: 400px;"/>
-    ![](0. R Chunk.png)
-    
+
     + 3. Markdown Symtax: headers, equations, images, lists, tables
     
     <img src="images/0. Markdown Symtax.png" alt="OptionsPanes" style="width: 400px;"/>
-    ![](0. Markdown Symtax.png)
 
 
 ## Installation and Basic
 1 Open an R. file and install rmarkdown packages from CRAN 
 
 <img src="images/1. Install rmarkdown.png" alt="OptionsPanes" style="width: 400px;"/>
-![](1. Install rmarkdown.png)
 
 ## Installation and Basic 
 2 Open an rmd. file which creats HTML output
 
 <img src="images/2. Open R Markdown.png" alt="OptionsPanes" style="width: 400px;"/>
-![](2. Open R Markdown.png)
 
 <img src="images/2. Chose HTML.png" alt="OptionsPanes" style="width: 400px;"/>
-![](2. Chose HTML.png)
 
 ## Installation and Basic 
 3 In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
 
 <img src="images/3. Run.png" alt="OptionsPanes" style="width: 400px;"/>
-![](3. Run.png)
 
 ## 1 YAML Header
 
 Open 60_RMarkdown Example Unordered.rmd
 
 <img src="images/4. 1. YAML.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 1. YAML.png)
 
 * At the top of the rmd. file
 
@@ -106,7 +98,6 @@ Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 * Embeded with lines of 3 left quotes
 
 <img src="images/0. R Chunk.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 2. R Chunk.png)
 
 * Chunk options, http://yihui.name/knitr/options/
 
@@ -127,32 +118,26 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 * Header
 
 <img src="images/4. 3. Markdown Syntax header.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax header.png)
 
 * Equation
 
 <img src="images/4. 3. Markdown Syntax equation.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax equation.png)
 
 * Image
 
 <img src="images/4. 3. Markdown Syntax images.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax images.png)
 
 * Unordered List
 
 <img src="images/4. 3. Markdown Syntax unorder list.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax unorder list.png)
 
 * Ordered List 
 
 <img src="images/4. 3. Markdown Syntax order list.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax order list.png)
 
 * Table
 
 <img src="images/4. 3. Markdown Syntax tables.png" alt="OptionsPanes" style="width: 400px;"/>
-![](4. 3. Markdown Syntax tables.png)
 
 ## Reorder the R source codes and Markdown syntaxes and add more relavant ones
 
