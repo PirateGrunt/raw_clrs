@@ -118,9 +118,7 @@ Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 
 * Besides, inline codes outside of the R chunks can still print results
 
-    <img src="images/4. 2. R Chunk inlin.png" alt="OptionsPanes" style="width: 400px;"/> 
-    can print 
-    <img src="images/4. 2. R Chunk inlin 2.png" alt="OptionsPanes" style="width: 400px;"/>
+    <img src="images/4. 2. R Chunk inline.png" alt="OptionsPanes" style="width: 400px;"/> can print <img src="images/4. 2. R Chunk inline 2.png" alt="OptionsPanes" style="width: 400px;"/>
     
 ## 3 Markdown Syntax
 
@@ -139,6 +137,7 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 * Image
 
 <img src="images/4. 3. Markdown Syntax images.png" alt="OptionsPanes" style="width: 400px;"/>
+![](4. 3. Markdown Syntax images.png)
 
 * Unordered List
 
