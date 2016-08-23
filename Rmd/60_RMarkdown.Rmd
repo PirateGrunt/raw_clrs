@@ -10,52 +10,51 @@ output:
     colortheme: dolphin
 ---
 
-## Review
-1. GettingStarted
-2. BasicData: variables tranformation, statistics, tables, data frames
-3. Visualization: ggplots
-4. ChainLadder: triangles, more plots
-5. OtherReserving: triangles, more plots
-
-
-## Create a New Project
-1. Data import and cleaning: read.csv()
-2. Data summary: summary()
-3. Visualization: ggplot()
-4. Chainladder
-5. Compare with other reserving: 
+## Create a new project
+1. Data Cleaning and Summary
+2. Data Transformation and Visualization
+3. Chain Ladder
+4. Additive Model
+5. Model Comparison and Selection
 
 ## Implementation
 * Option A
-    + Calculate the new R objects, such as statistics, new variables, tables, plotss and etc.
-    + Copy and paste in PowerPoint. 
-
+    + Calculate new R objects, such as statistics, new variables, tables, plots and etc. in RStudio
+    + Copy and paste them into PowerPoint. 
+    + Pro: easy to make adjustment of the formats
+    + Con: time consuming when coding and formating in 2 different files
+    
 * Option B
-    + Create a RMarkdown including R objects and markdown syntax (a plain text format)
+    + Create a RMarkdown file including R source codes and markdown syntaxes (a plain text format)
     + Output to PDF, Word or HTML
-
-R                                          | R Markdown
--------------------------------------------|-------------------------------------------
-Run in R base system or RStudio            |Run in RStudio 
-R. file                                    |rmd. file       
-R codes without markdown syntax            |R codes written in chunks or inline   
-"Run" (Control+R for Shortcut)             |"Run" or "Knit HTML" or "Knit PDF" or "Knit Word"
+    + Pro: code and format in 1 file
+    + Con: have to learn a new R package
+    
+R                               | R Markdown
+--------------------------------|-------------------------------------------
+Run in R base system or RStudio |Run in RStudio 
+R. file                         |rmd. file       
+R codes without markdown syntax |R codes written in chunks or inline   
+"Run" (Control+R for Shortcut)  |"Run" or "Knit HTML" or "Knit PDF" or "Knit Word"
 
 
 ## Introduction of RMarkdown
-* RMarkdown is a format that combines R syntax with markdown syntax
+* RMarkdown is a format that combines R source codes with markdown syntaxes
 
 * We can create rmd. file in RStudio 
 
 * In a rmd. file, there are 3 components
 
-    + 1. YAML Header: what type of document to build (JPG)
+    + 1. YAML Header: what type of document to build 
+    
     ![](0. YAML Header.png)
 
-    + 2. R Chunk: tables, plots, regressions(JPG)
+    + 2. R Chunk: tables, plots, regressions by R source codes
+    
     ![](0. R Chunk.png)
     
-    + 3. Markdown Symtax: headers, dashes, equations, imagess, lists, jpg, tables(JPG)
+    + 3. Markdown Symtax: headers, equations, images, lists, tables
+    
     ![](0. Markdown Symtax.png)
 
 
@@ -72,72 +71,90 @@ R codes without markdown syntax            |R codes written in chunks or inline
 ![](2. Chose HTML.png)
 
 ## Installation and Basic 
-3. Run R codes, Knit HTML, Knit PDF or Knit Word
+3. In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
+
 ![](3. Run.png)
 
 ## 1. YAML Header
+
+Open 60_RMarkdown Example Unordered.rmd
+
 ![](4. 1. YAML.png)
+
+* At the top of the rmd. file
 
 * Embeded with lines of 3 dashes
 
-* Change title, name and date 
+* Change title, name and date
 
 * Change output from "html_document" to "word_document" or "pdf_document""
 
+* YAML options, http://rmarkdown.rstudio.com/pdf_document_format.html
 
 ## 2. R Chunk
+
+Kit PDF by Review 60_RMarkdown Example Unordered.rmd
+
+* Embeded with lines of 3 left quotes
+
 ![](4. 2. R Chunk.png)
-
-* Replace template codes with your codes
-    copy and paste
-
 
 * Chunk options, http://yihui.name/knitr/options/
 
-    + echo=FASLE: turn off the R source code in the output file
+    + warning=FALSE does not print warnings in the output document (warning=TRUE is default)
 
-    + warning=FALSE: print warnings in the console instead of the output document
+    + message=FALSE does not print message in the output document (similar to warning, error=TRUE is default)
 
-    + error=FALSE: stop the evaluation on errors
-    
+    + echo=FASLE turns off the R source code in the output file (echo=TRUE is default)
 
-* Besides, inline code
+* Besides, inline codes outside of the R chunks can still print results
 
-jpg:There were `r nrow(data)` observations.
-
+    + ![](4. 2. R Chunk inline.png) can print ![](4. 2. R Chunk inline 2.png)
 
 ## 3. Markdown Syntax
-![](4. 3. Markdown Syntax.png)
 
-* Headers
-jpg:: "##"
+Kit PDF by  60_RMarkdown Example Unordered.rmd
 
-* Star
-jpg:
+* Header
 
-* Block Quote
-jpg:
+![](4. 3. Markdown Syntax header.png)
 
-* Equations
-jpg: $A = \pi*r^{2}$ 
+* Equation
 
-* Imagess (jpg. or png. files) 
-jpg:"![](plot.png"
+![](4. 3. Markdown Syntax equation.png)
 
-* Unordered Lists, *
-jpg:
+* Image
 
-* Ordered Lists, 1.
-jpg:
+![](4. 3. Markdown Syntax images.png)
 
-* Tables
-jpg:
+* Unordered List
 
-## Example: Reorder the codes I just show you
-jpg. (rmd frmo read.csv to reserving)
+![](4. 3. Markdown Syntax unorder list.png)
 
+* Ordered List 
 
-## Example: Output
-jpg.
+![](4. 3. Markdown Syntax order list.png)
+
+* Table
+
+![](4. 3. Markdown Syntax tables.png)
+
+## Reorder the R source codes and Markdown syntaxes and add more relavant ones
+
+Open 60_RMarkdown Example Ordered.rmd. It contains the new project. 
+
+1. Data Cleaning and Summary
+2. Data Transformation and Visualization
+3. Chain Ladder
+4. Additive Model
+5. Model Comparison and Selection
+
+## Create outputs of the new project 
+
+Kit 60_RMarkdown Example Ordered.pdf
+
+Kit 60_RMarkdown Example Ordered.word
+
+Kit 60_RMarkdown Example Ordered.html
 
 ## Q & A
