@@ -45,13 +45,7 @@ Raise your hand if you need help installing
 
 ## Options
 
-<div class="columns-2">
-
 <img src="images/OptionsPanes.png" alt="OptionsPanes" style="width: 400px;"/>
-
-Options like "VCS" and "Packages" will make sense to you later (but not today).
-
-</div>
 
 ## 
 
@@ -124,9 +118,7 @@ myFit <- lm(Y ~ X)
 8. Make the response term, Y, lognormal
 6. Run that script
 
-## Packages {.flexbox .vcenter}
-
-## What's a package?
+## Packages
 
 * Allows any user to extend R's capabilities
 * Must conform to a well-defined standard
@@ -141,7 +133,6 @@ Installing something new
 ```{r eval=FALSE}
 install.packages("ggplot2")
 ```
-
 
 Loading an installed package
 
@@ -165,13 +156,14 @@ remove.packages("IdontWantThisAnymore")
 
 ## Don't make this complicated
 
-Installation ~ Copying a file to your computer
+|              |                                |
+|--------------|---------------------------------|
+| Installation | Copying a file to your computer |
+| `library` | Opening a file = Placing a file into RAM |
+| Detaching a package | Closing a file |
+| Removing a package | Deleting a file |
 
-`library` ~ Opening a file = Placing a file into RAM
-
-Detaching a package ~ Closing a file
-
-Removing a package ~ Deleting a file
+## Don't make this complicated
 
 >- _A package won't work if it isn't loaded with `library`._
 >- _You can't load a package if you haven't installed it._
@@ -186,4 +178,4 @@ Install the `actuar` package.
 ## A couple final thoughts
 
 * Try not to work in the console. Write code in scripts.
-* .Rdata and History look like they might be helpful. They rarely (never) are. Stick to scripts.
+* .Rdata and History look like they might be helpful. They're not. Stick to scripts.

@@ -11,11 +11,6 @@ output:
     colortheme: dolphin
 ---
 
-## 
-
-* base plotting
-* ggplot2
-
 ## Base plotting
 
 * Gets the job done with a minimum of fuss. 
@@ -24,7 +19,9 @@ output:
 ##
 
 ```{r}
+dfUpper <- read.csv("./data/upper.csv", stringsAsFactors = FALSE)
 
+plot(dfUpper$CumulativePaid, dfUpper$NetEP)
 ```
 
 
@@ -56,7 +53,7 @@ class(basePlot)
 Aesthetics are anything visible on the plot. Added with the `aes` function. Data will be mapped to visual elements.
 
 ```{r }
-basePlot <- basePlot + aes(x = PolicyYear, y = NumClaims, group=Region, color=Region, fill=Region)
+basePlot <- basePlot + aes(x = PolicyYear, y = NumClaims, color=Region)
 ```
 
 ## Adding layers
@@ -82,15 +79,6 @@ p <- basePlot + geom_point() + geom_line()
 p
 ```
 
-## Adding layers
-
-```{r }
-p <- basePlot + geom_bar(stat="identity")
-p
-```
-
-Here `stat` is a statistical transformation.
-
 ## One step
 
 Typically we don't do this in steps.
@@ -100,26 +88,41 @@ p <- ggplot(RegionExperience, aes(x = PolicyYear, y = NumClaims, group=Region, c
 p
 ```
 
-## Facets
+## Layers have loads of parameters
+
 ```{r }
-p <- basePlot + geom_line() + facet_wrap(~ Region)
+p <- basePlot + geom_bar(stat="identity", aes(fill = Region))
 p
 ```
 
-## Facets
+## Mmm, parameters
 
-That plot was a bit boring.
+```{r }
+p <- basePlot + geom_bar(stat="identity", position="dodge", aes(fill=Region))
+p
+```
+
+## Layer parameters
+
+How do I know which parameters do what? 
+
+Help, google and stack overflow are your friends. Also, loads of books on the subject.
+
+## Facets
 
 ```{r }
 data(StateExperience)
-p = ggplot(StateExperience, aes(x = PolicyYear, y = NumClaims, color = State)) + geom_point() + facet_wrap(~ Region)
+p <- ggplot(StateExperience, aes(x = PolicyYear, y = NumClaims, color = State)) + geom_point() + facet_wrap(~ Region)
+p <- p + theme(legend.position = "none")
 p
 ```
 
-```{r eval=FALSE}
-p <- ggplot(subset(StateExperience, Region == "South"), aes(x = PolicyYear, y = NumClaims, label=Postal))
-p <- p + geom_point() + facet_wrap(~ Postal)
-p
+## Statistical smoothers
+
+```{r}
+p <- ggplot(RegionExperience, aes(x = PolicyYear, y = NumClaims, group=Region, color=Region)) + geom_point()
+p + geom_smooth(se = FALSE)
+p + geom_smooth(method = lm)
 ```
 
 ## Tasks
@@ -129,26 +132,19 @@ data("wkcomp")
 ```
 
 * Subset the wc reserving data to two companies
-* Plot the cumulative paid against net earned premium. Ensure that each company is distinguishable.
+* Plot the cumulative paid against net earned premium. Split by development lag and company. You'll need to group and facet for this.
 * Add a linear fit. 
 
-## Answer
+Other tasks
 
-```{r}
-
-```
-
-
-## Other tasks
-
-* Draw a density plot which shows the lag 1 paid loss ratio separated by company.
+* Draw a density plot which shows the lag 10 paid loss ratio separated by company.
 * Are the responses normal? Is the variance the same?
-* Plot the two companies in different facets and 
+* Plot the two companies in different facets
 
-## Other answers
+## Answer - Two companies
 
-```{r}
-library(dplyr)
+```{r results='hide', messages=FALSE}
+suppressMessages(library(dplyr))
 data("wkcomp")
 
 dfTwo <- wkcomp %>% 
@@ -156,12 +152,26 @@ dfTwo <- wkcomp %>%
 
 set.seed(1234)
 dfTwo <- dfTwo %>% 
-  filter(Company %in% sample(unique(dfTwo$Company), 2)
-         , Lag == 1) %>% 
+  filter(Company %in% sample(unique(dfTwo$Company), 2)) %>% 
   mutate(PaidLR = CumulativePaid / NetEP)
+```
 
-pltDensityOne <- ggplot(dfTwo, aes(PaidLR, fill = Company)) + geom_density(alpha = 0.7)
-pltDensityOne
+## 
+
+```{r}
+plt <- ggplot(dfTwo, aes(NetEP, CumulativePaid, color = factor(Lag))) + geom_point() + facet_wrap(~Company, scales="free")
+plt
+
+plt + geom_smooth(method = lm, se=FALSE)
+```
+
+## Density
+
+```{r}
+pltDensity <- ggplot(filter(dfTwo, Lag == 10), aes(PaidLR, fill = Company)) + geom_density(alpha = 0.7)
+pltDensity
+
+pltDensity + facet_wrap(~ Company)
 ```
 
 

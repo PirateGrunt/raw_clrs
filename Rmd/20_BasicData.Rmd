@@ -62,7 +62,7 @@ str(NJM_WC)
 
 ## Base operations - columns
 
-Use `[ ]` and `$` to access elements of a data frame.
+Use `[ ]` and `$` to access elements of a data frame. Note that we need to include the comma to indicate that we're returning both rows and columns.
 
 The following statements are equivalent:
 
@@ -110,7 +110,9 @@ suppressMessages(library(dplyr))
 library(dplyr)
 dfEx <- NJM_WC %>% 
   group_by(AccidentYear) %>% 
-  summarise(MaxPaid = max(CumulativePaid))
+  summarise(MaxPaid = max(CumulativePaid)
+            , MinPaid = min(CumulativePaid)
+            , AvgPaid = mean(CumulativePaid))
 ```
 
 ```{r results='asis', echo=FALSE}
