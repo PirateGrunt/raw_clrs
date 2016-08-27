@@ -1,0 +1,44 @@
+---
+title: "RMarkdown"
+author: "Li, Emma"
+date: "Sunday, September 18, 2016"
+output: pdf_document
+---
+
+```{r, message=TRUE,warning=TRUE, echo=TRUE}
+library(tidyr)
+library(raw)
+library(ggplot2)
+library(dplyr)
+library(ChainLadder)
+library(tibble)
+data(NJM_WC)
+summary(NJM_WC)
+```
+
+There were `r nrow(NJM_WC)` observations.
+
+## 1. Data Cleaning and Summary
+### Summary
+
+$IncrementalPaid = \beta_{1}+\beta_{2}*NetEP+\epsilon$ 
+
+![](CAS.png)
+
+* Positive correlation with earned premium
+* Does it break the i.i.d. residual term assumptions?
+    + Independence
+    + Individual
+
+1. Data Cleaning and Summary
+2. Data Transformation and Visualization
+3. Chain Ladder
+4. Additive Model
+5. Model Comparison
+
+Models|R Square                        |Adjusted R Square
+------|--------------------------------|----------------------------------------
+AM    |`r 1+1                         `|`r 1+1                         `
+CL    |`r 1+1                         `|`r 1+1                         `
+
+

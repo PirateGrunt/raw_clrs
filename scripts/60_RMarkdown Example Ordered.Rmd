@@ -1,0 +1,131 @@
+---
+title: "RMarkdown"
+author: "Li, Emma"
+date: "Sunday, September 18, 2016"
+output: pdf_document
+---
+
+1. Data Cleaning and Summary
+2. Data Transformation and Visualization
+3. Chain Ladder
+4. Additive Model
+5. Model Comparison
+
+## 1. Data Cleaning and Summary
+### Summary
+
+```{r, message=FALSE,warning=TRUE, echo=FALSE}
+library(tidyr)
+library(raw)
+library(ggplot2)
+library(dplyr)
+library(ChainLadder)
+library(tibble)
+data(NJM_WC)
+summary(NJM_WC)
+```
+
+### Structure
+
+There were `r nrow(NJM_WC)` observations.
+
+```{r, message=FALSE,warning=TRUE, echo=FALSE}
+str(NJM_WC)
+```
+
+## 2. Data Transformation and Visualization 
+### Triangle
+
+```{r, message=FALSE,warning=FALSE, echo=TRUE}
+njm_wc_tri <- NJM_WC %>% dplyr::filter(DevelopmentYear <= 1997) 
+njm_wc_tri <- as.triangle(Triangle = njm_wc_tri, origin = 'AccidentYear', 
+                         dev = 'Lag', value =  'CumulativeIncurred'); njm_wc_tri[,1:8]
+```
+
+### Head
+
+```{r, message=FALSE,warning=FALSE, echo=TRUE}
+njm_wc_df <- njm_wc_tri[,2:10] / njm_wc_tri[,1:9] %>%   as_tibble()
+njm_wc_df <- dplyr::mutate(njm_wc_df, accident_year = as.character(1988:1997))
+names(njm_wc_df)[1:9] <- paste(1:9, "to", 2:10)
+njm_wc_df <- gather(njm_wc_df, key = interval, value = development_factor, 1:9, na.rm = TRUE)
+head(njm_wc_df)
+```
+
+### Development Factors vs Intervals
+
+```{r, message=FALSE,warning=TRUE, echo=FALSE}
+plt<-ggplot(data = njm_wc_df, mapping = aes(x = interval, y = development_factor, color = accident_year)) 
+plt + geom_point()
+```
+
+> Multiple factors for 1 interval
+
+> ...
+
+> more comments
+
+## 3. Chain Ladder 
+### Increment Paid vs Prior Cumulative Paid
+
+```{r, message=TRUE,warning=FALSE, echo=FALSE,fig.height=3.5,fig.width=3.5}
+dfUpper <- NJM_WC %>%
+  arrange(AccidentYear, Lag) %>%   mutate(IncrementalPaid = CumulativePaid - lag(CumulativePaid)
+                                        , IncrementalPaid = ifelse(Lag == 1, CumulativePaid, IncrementalPaid)
+                                        , PriorCumulativePaid = lag(CumulativePaid)
+                                        , PriorCumulativePaid = ifelse(Lag == 1, NA, PriorCumulativePaid)
+                                        , LagGroup = factor(Lag) )
+plt <- ggplot(dfUpper, aes(x=PriorCumulativePaid, y=IncrementalPaid, color = LagGroup)) + geom_point()
+plt + geom_smooth(method = "lm", se = FALSE)
+```
+
+### Residuals vs Predictions
+
+```{r, message=FALSE,warning=TRUE, echo=FALSE,fig.height=3.5,fig.width=3.5}
+dfUpper2<-dfUpper[!is.na(dfUpper$PriorCumulativePaid),]
+fitPaidCL <- lm(data = dfUpper2, IncrementalPaid ~ 0 + PriorCumulativePaid:LagGroup)
+dfUpper2 <- dfUpper2 %>% mutate(  PredictedPaidCL = predict(fitPaidCL)
+                               , ResidualPaidCL = residuals(fitPaidCL)
+                               , R_StandardPaidCL = rstandard(fitPaidCL)      )
+pltResid <- ggplot(dfUpper2, aes(PredictedPaidCL, R_StandardPaidCL)) + geom_point()
+pltResid + geom_smooth(method = "lm")
+```
+
+1. Steep slope at lag 1
+2. More insights from the plots
+
+## 4. Additive Model
+### Increment Paid vs Net Earned Premium
+
+```{r, message=TRUE,warning=FALSE, echo=FALSE,fig.height=3.3,fig.width=3.3}
+plt <- ggplot(dfUpper, aes(NetEP, IncrementalPaid, color = LagGroup)) + geom_point()
+plt + geom_smooth(method = "lm", se = FALSE)
+```
+
+$IncrementalPaid = \beta_{1}+\beta_{2}*NetEP+\epsilon$ 
+
+### Residuals vs Predictions
+
+```{r, message=FALSE,warning=TRUE, echo=FALSE,fig.height=3.3,fig.width=3.3}
+fitPaidAM <- lm(data = dfUpper, IncrementalPaid ~ 0 + NetEP:LagGroup)
+dfUpper <- dfUpper %>%   mutate(PredictedPaidAM = predict(fitPaidAM)
+                              , ResidualPaidAM = residuals(fitPaidAM)
+                              , R_StandardPaidAM = rstandard(fitPaidAM))
+pltResid <- ggplot(dfUpper, aes(PredictedPaidAM, R_StandardPaidAM)) + geom_point()
+pltResid + geom_smooth(method = "lm")
+```
+
+* Positive correlation with earned premium
+* Does it break the i.i.d. residual term assumptions?
+    + Independence
+    + Individual
+
+## 5. Model Comparison and Selection
+Models|R Square                        |Adjusted R Square
+------|--------------------------------|----------------------------------------
+AM    |`r summary(fitPaidAM)$r.squared`|`r summary(fitPaidAM)$adj.r.squared`
+CL    |`r summary(fitPaidCL)$r.squared`|`r summary(fitPaidCL)$adj.r.squared`
+
+# Chain Ladder model is chosen!
+
+![](CAS.png)

@@ -1,8 +1,9 @@
 ---
-title: 'Basic Data Manipulation'
+title: 'Getting Started'
 author: "Brian A. Fannin"
 output:
-  slidy_presentation:
+  ioslides_presentation:
+    logo: images/cas_logo.png
     duration: 45
     fig_height: 3
     fig_width: 6
@@ -22,8 +23,13 @@ Patrick Burns
 
 * Make sure that R and RStudio are installed
 * Get used to the RStudio environment
-*  Create a script
-*  Install a package
+* Create a script
+    * Simulate normal random variable
+    * Construct a new variable
+    * Construct a data frame
+    * Fit a linear model
+    * Plot
+* Install a package
 
 ## Installation {.flexbox .vcenter}
 
@@ -39,13 +45,7 @@ Raise your hand if you need help installing
 
 ## Options
 
-<div class="columns-2">
-
 <img src="images/OptionsPanes.png" alt="OptionsPanes" style="width: 400px;"/>
-
-Options like "VCS" and "Packages" will make sense to you later (but not today).
-
-</div>
 
 ## 
 
@@ -67,6 +67,17 @@ Appearance
 <img src="images/OptionsAppearance.png" alt="MyLayout" style="width: 400px;"/>
 
 </div>
+
+## Help
+
+Use it early and often.
+
+```{r eval=FALSE}
+?lm
+??cluster
+```
+
+If you don't, expect to get familiar with this abbreviation: [RTFM](https://en.wikipedia.org/wiki/RTFM)
 
 ## Excel and R
 
@@ -90,6 +101,8 @@ X <- rep(seq(1, 10), 10)
 Y <- B0 + B1 * X + e
 
 plot(X, Y)
+
+myFit <- lm(Y ~ X)
 ```
 
 ## Task
@@ -105,9 +118,7 @@ plot(X, Y)
 8. Make the response term, Y, lognormal
 6. Run that script
 
-## Packages {.flexbox .vcenter}
-
-## What's a package?
+## Packages
 
 * Allows any user to extend R's capabilities
 * Must conform to a well-defined standard
@@ -122,7 +133,6 @@ Installing something new
 ```{r eval=FALSE}
 install.packages("ggplot2")
 ```
-
 
 Loading an installed package
 
@@ -146,13 +156,14 @@ remove.packages("IdontWantThisAnymore")
 
 ## Don't make this complicated
 
-Installation ~ Copying a file to your computer
+|              |                                |
+|--------------|---------------------------------|
+| Installation | Copying a file to your computer |
+| `library` | Opening a file = Placing a file into RAM |
+| Detaching a package | Closing a file |
+| Removing a package | Deleting a file |
 
-`library` ~ Opening a file = Placing a file into RAM
-
-Detaching a package ~ Closing a file
-
-Removing a package ~ Deleting a file
+## Don't make this complicated
 
 >- _A package won't work if it isn't loaded with `library`._
 >- _You can't load a package if you haven't installed it._
@@ -163,3 +174,8 @@ Removing a package ~ Deleting a file
 ## Exercise
 
 Install the `actuar` package.
+
+## A couple final thoughts
+
+* Try not to work in the console. Write code in scripts.
+* .Rdata and History look like they might be helpful. They're not. Stick to scripts.

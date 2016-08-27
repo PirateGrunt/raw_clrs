@@ -3,11 +3,11 @@ title: 'Basic Data Manipulation'
 author: "Brian A. Fannin"
 output:
   slidy_presentation:
+    css: My.css
+    logo: images/cas_logo.png
     duration: 45
     fig_height: 3
     fig_width: 6
-  beamer_presentation:
-    colortheme: dolphin
 ---
 
 ##
@@ -53,47 +53,161 @@ whichCell
 
 A data frame is a set of vectors. This is basically the same concept as a table in Excel or a relational database.
 
-```{r results='hide'}
-class(NJM_WC)
+Run the following lines:
 
+```{r results='hide'}
 summary(NJM_WC)
 str(NJM_WC)
 ```
 
-## 
+## Base operations - columns
 
-## Saving data
+Use `[ ]` and `$` to access elements of a data frame. Note that we need to include the comma to indicate that we're returning both rows and columns.
+
+The following statements are equivalent:
+
+```{r}
+var1 <- NJM_WC$CumulativePaid
+var2 <- NJM_WC[, "CumulativePaid"]
+var3 <- NJM_WC[, 7]
+```
+
+## Base operations - rows
+
+Filtering data by row works the same as with vectors. 
+
+```{r}
+upperTri <- NJM_WC$DevelopmentYear <= 1997
+dfUpper <- NJM_WC[upperTri, ]
+```
+
+You can also use subset:
+
+```{r}
+dfUpper <- subset(NJM_WC, DevelopmentYear <= 1997)
+```
+
+
+## `dplyr`
+
+| verb | outcome
+|-------|-------------------------------------------|
+| `select` | Returns columns that are named, or _excludes_ named columns|
+| `filter` | Returns rows that meet a certain criteria |
+| `mutate` | Creates a new column    |
+| `group_by` | All subsequent operations are applied at the group level |
+|  `summarise` | Aggregates a set of data to a single value |
+
+The `%>%` operator will take the output of one operation as the input for the next operation.
+
+## Quick example
+
+```{r echo=FALSE}
+suppressMessages(library(dplyr))
+```
+
+```{r }
+library(dplyr)
+dfEx <- NJM_WC %>% 
+  group_by(AccidentYear) %>% 
+  summarise(MaxPaid = max(CumulativePaid)
+            , MinPaid = min(CumulativePaid)
+            , AvgPaid = mean(CumulativePaid))
+```
+
+```{r results='asis', echo=FALSE}
+pander::pandoc.table(dfEx, big.mark=",")
+```
+
+## `dplyr` in action
+
+Identify 5 companies with the highest average paid for the first development year.
+
+```{r}
+data("wkcomp")
+
+dfAvgPaid <- wkcomp %>%
+  raw::CasColNames(FALSE) %>% 
+  filter(Lag == 1) %>% 
+  group_by(Company) %>% 
+  summarise(AvgPaid = mean(CumulativePaid)) %>% 
+  arrange(desc(AvgPaid)) %>% 
+  slice(1:5)
+```
+
+```{r results='asis', echo=FALSE}
+pander::pandoc.table(dfAvgPaid, big.mark=",")
+```
+
+## Task
+
+1. Add a column to the New Jersey Manufacturer's data to indicate whether the cell is in the upper portion of the triangle.
+2. Create a new data frame which includes only the upper triangle.
+
+Additional tasks
+
+1. Eliminate the GroupCode and Company columns from your data frame.
+2. Form a time series which shows the ratio of net to direct earned premium. Note: you'll need to use the `unique` function.
+3. Fit a linear model to this time series. Is there any relationship between cession ratio and accident year?
+
+## Answer
+
+```{r}
+library(dplyr)
+
+dfUpper <- NJM_WC %>% 
+  mutate(Upper = DevelopmentYear <= 1997) %>% 
+  filter(Upper)
+```
+
+## Additional answers
+
+```{r}
+dfMyData <- NJM_WC %>% 
+  select(-GroupCode, -Company)
+
+dfTimeSeries <- NJM_WC %>% 
+  mutate(CessionPct = NetEP / DirectEP) %>% 
+  unique()
+
+myFit <- lm(CessionPct ~ AccidentYear, data = dfTimeSeries)
+```
+
+## Saving and reading data
+
+Saving data
 
 ```{r}
 write.csv(NJM_WC, "MyData.csv", row.names = FALSE)
 ```
 
-## Reading data
+Reading data
 
 ```{r}
 dfMyData <- read.csv("MyData.csv", stringsAsFactors = FALSE)
-
-all.equal(NJM_WC, dfMyData)
-
-class(NJM_WC)
 ```
 
 ## The working directory
 
-## 
+Source of much confusion and frustration.
 
-```{r}
+```{r eval=FALSE}
+getwd()
 
+setwd("SomeDirectory/SomeFolder")
 ```
 
 ## Task
 
-* Subset the New Jersey Manufacturer's data to show only claims from 1990
-* Form a data frame which does not show the GroupCode or Company columns
-<!--
-## The console
+1. Within your working directory create a new folder called "data".
+2. Save the upper triangle data frame to this directory.
 
-> - You can also execute lines from the console. 
+## Answer
 
-> - You rarely want to do this.
--->
+```{r}
+if (!dir.exists("./data/")) dir.create("./data/")
+
+write.csv(dfUpper, "./data/upper.csv", row.names = FALSE)
+
+dfUpper <- read.csv("./data/upper.csv", stringsAsFactors = FALSE)
+```
