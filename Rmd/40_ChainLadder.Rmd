@@ -265,6 +265,6 @@ Paid[seq(from = 1, to = n, by = 4),] <- qpaid # fill in every 4th row with the a
 
 ## Questions??
 
-Rajesh Sahasrabuddhe
-215 246 1028
+Rajesh Sahasrabuddhe  
+215 246 1028  
 [Write me!](mailto:rajesh.sahasrabuddhe@oliverwyman.com)
