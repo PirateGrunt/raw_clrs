@@ -207,9 +207,12 @@ class(gen_ins_tri)</pre>
 
 <ul>
 <li>Create an <code>R</code> object with class <code>triangle</code> and <code>matrix</code> with the incurred loss data</li>
-<li>Remove all records with <code>DevelopmentYear</code> greater than 1997<br/>Extra Credit</li>
+<li>Remove all records with <code>DevelopmentYear</code> greater than 1997<br/>
+
+<div color="red" class="red">
+<br>Extra Credit</div></li>
 <li>Create an <code>R</code> object with class <code>data.frame</code> or <code>tbl_df</code> with the observed development factors for further examination</li>
-<li>Using plotting (i.e. data visualization) tools only identify the accident year that results in the largest 2:3 development factor.</li>
+<li>Using plotting (i.e. data visualization) tools only, identify the accident year that results in the largest 2:3 development factor.</li>
 </ul></li>
 </ol>
 
@@ -355,18 +358,29 @@ Models Available in <code>ChainLadder</code>:
 
 </article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-1">
 
-<p>For the ClarkLDF method estimate with a tail that is:<br/>1. 20 years in length 2. measured from the beginning of the accident year 3. modeled using a loglogistic growth curve</p>
+<p>For the ClarkLDF method estimate with a tail that is:</p>
+
+<ol>
+<li>20 years in length</li>
+<li>measured from the beginning of the accident year</li>
+<li>modeled using a loglogistic growth curve</li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-2">
 
 <p>Provide the following:</p>
 
 <ol>
 <li>Total &#39;IBNR&#39; (Unpaid)</li>
 <li>The indicated cumulative LDF for 1989 for the specified growth function (without regards to the selected length of the tail)</li>
-<li>The LDF truncated to 20 years for 1989<br/>Extra Credit:<br/></li>
+<li>The LDF truncated to 20 years for 1989<br/>
+
+<div color="red" class="red">
+<br>Extra Credit</div></li>
 <li>The indicated cumulative development factor at age 15 (with and without truncation)</li>
 </ol>
 
-</article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-2">
+</article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-3">
 
 <pre class = 'prettyprint lang-r'>clark &lt;- ClarkLDF(Triangle = liab_tri, maxage = 20, adol = FALSE)
 clark$Total$FutureValue</pre>
@@ -381,7 +395,7 @@ clark$Total$FutureValue</pre>
 
 <pre >## [1] 1.040017</pre>
 
-</article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-3">
+</article></slide><slide class=''><hgroup><h2>Excercise 2</h2></hgroup><article  id="excercise-2-4">
 
 <pre class = 'prettyprint lang-r'>unname(1 + (clark$THETAG[2]/15)^clark$THETAG[1])</pre>
 
@@ -394,7 +408,11 @@ clark$Total$FutureValue</pre>
 
 </article></slide><slide class=''><hgroup><h2>Tails</h2></hgroup><article  id="tails">
 
-<p>Both the <code>ClarkCapeCod</code> and <code>ClarkLDF</code> fit growth functions to extrapolate the development pattern. <code>tail ~ c(&quot;G&quot;, &quot;maxage&quot;)</code> See the Clark paper for the forms of the extrapolation model.</p>
+<p>Both the <code>ClarkCapeCod</code> and <code>ClarkLDF</code> fit growth functions to extrapolate the development pattern.</p>
+
+<p><code>tail ~ c(&quot;G&quot;, &quot;maxage&quot;)</code></p>
+
+<p>See the Clark paper for the forms of the extrapolation model.</p>
 
 </article></slide><slide class=''><hgroup><h2>Selected Loss Development Factors</h2></hgroup><article  id="selected-loss-development-factors">
 
@@ -428,11 +446,26 @@ full_tri &lt;- predict(chainladder(liab_tri, delta = alphas))</pre>
 
 <p>This has the potential to support the variability calcaulation from the <a href='http://www.variancejournal.org/issues/06-02/143.pdf' title=''>CLFM paper</a></p>
 
-<p><a href='https://github.com/mages/ChainLadder/issues' title=''>Github issue</a></p>
+<p><a href='https://github.com/mages/ChainLadder/issues/23' title=''>Github issue</a></p>
 
-</article></slide><slide class=''><hgroup><h2>Incomplete Traingles</h2></hgroup><article  id="incomplete-traingles">
+</article></slide><slide class=''><hgroup><h2>Quarterly Triangles</h2></hgroup><article  id="quarterly-triangles">
 
-<p><code>qpaid</code></p></article></slide>
+<p>The <code>qpaid</code> and <code>qincurred</code> are included in ChainLadder to demonstrate how to deal with triangles with quarterly evlautions and annual periods.</p>
+
+<pre class = 'prettyprint lang-r'># ?qpaid #not run
+dim(qpaid)</pre>
+
+<pre >## [1] 12 45</pre>
+
+<pre class = 'prettyprint lang-r'>## MackChainLadder expects a quadratic matrix so let&#39;s expand 
+## the triangle to a quarterly origin period.
+n &lt;- ncol(qpaid) # Number of quarterly valuations
+Paid &lt;- matrix(NA, n, n) # create a matrix with NAs
+Paid[seq(from = 1, to = n, by = 4),] &lt;- qpaid # fill in every 4th row with the annual data</pre>
+
+</article></slide><slide class=''><hgroup><h2>Questions??</h2></hgroup><article  id="questions">
+
+<p>Rajesh Sahasrabuddhe 215 246 1028 <a href='mailto:rajesh.sahasrabuddhe@oliverwyman.com' title=''>Write me!</a></p></article></slide>
 
 
   <slide class="backdrop"></slide>
