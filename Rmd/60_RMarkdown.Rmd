@@ -33,7 +33,7 @@ output:
 R                               | R Markdown
 --------------------------------|-------------------------------------------
 Run in R base system or RStudio |Run in RStudio 
-R. file                         |rmd. file       
+file.R                          |file.rmd       
 R codes without markdown syntax |R codes written in chunks or inline   
 "Run" (Control+R for Shortcut)  |"Run" or "Knit HTML" or "Knit PDF" or "Knit Word"
 
@@ -41,7 +41,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 ## Introduction of RMarkdown
 * RMarkdown is a format that combines R source codes with markdown syntax
 
-* We can create rmd. file in RStudio 
+* We can create file.rmd in RStudio 
 
 * In a rmd. file, there are 3 components
 
@@ -135,7 +135,7 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
 ## Tasks
 
-* Open 60_RMarkdown Example Ordered.rmd: Can I output Html file?
+* Open 60_RMarkdown Example Ordered.rmd: Can I output Html document?
 * Reorder the R source codes and Markdown syntaxes to create a new projects: Can I see the R source codes, warnings and messages in the output?   
 
     1. Data Cleaning and Summary: Can you display the dimension of the dataset? Top rows of the dataset? Column names of the dataset?
