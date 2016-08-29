@@ -135,14 +135,13 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
 ## Tasks
 
-* Reorder the R source codes and Markdown syntaxes 
+* Open 60_RMarkdown Example Ordered.rmd: Can I output Html file?
+* Reorder the R source codes and Markdown syntaxes to create a new projects: Can I see the R source codes, warnings and messages in the output?   
 
-    + Open 60_RMarkdown Example Ordered.rmd. It contains the new project: 
-
-    1. Data Cleaning and Summary
-    2. Data Transformation and Visualization
-    3. Chain Ladder
-    4. Additive Model 
+    1. Data Cleaning and Summary: Can you display the dimension of the dataset? Top rows of the dataset? Column names of the dataset?
+    2. Data Transformation and Visualization: Can you add some comments for the data transformation and visualization?
+    3. Chain Ladder: Can you add sub-lists to the items of the ordered list?
+    4. Additive Model: Can you change $\beta_{1}$ to $\beta_{0}$ and $\beta_{2}$ to $\beta_{1}$? 
     5. Model Comparison and Selection
 
 * Kit PDF, Html and/or Word outputs
