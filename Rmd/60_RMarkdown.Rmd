@@ -142,8 +142,8 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
     2. Data Transformation and Visualization: Can you add some comments for the data transformation and visualization?
     3. Chain Ladder: Can you add sub-lists to the ordered list?
     4. Additive Model: Can you change sub-lists to the sub-lists?
-    5. Model Comparison and Selection: Can you only display inline codes in the table?
+    5. Model Comparison and Selection: Can you dosplay and only display inline codes in the table?
 
-* Kit PDF, Html and/or Word outputs
+* Kit PDF, Html and/or Word outputs: Can you change the output types manually? 
 
 ## Q & A
