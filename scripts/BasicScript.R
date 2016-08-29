@@ -9,12 +9,18 @@ B1 <- 1.5
 
 set.seed(1234)
 e <- rnorm(N, mean = 0, sd = 1)
-X1 <- rep(seq(1,10),10)
+X <- rep(seq(1, 10), 10)
 
-Y <- B0 + B1 * X1 + e
+Y <- B0 + B1 * X + e
 
-myFit <- lm(Y ~ X1)
+plot(X, Y)
 
-dfBasic <- data.frame(Y, X1, e)
+myFit <- lm(Y ~ X)
+
+plot(myFit)
+
+dfBasic <- data.frame(Y, X, e)
 
 dfBasic$Prediction <- predict(myFit)
+
+hist(exp(Y))
