@@ -22,10 +22,10 @@ output:
     + Calculate new R objects, such as statistics, new variables, tables, plots and etc. in RStudio
     + Copy and paste them into PowerPoint. 
     + Pro: easy to make adjustment of the formats
-    + Con: time consuming when coding and formating in 2 different files
+    + Con: time consuming when coding and formatting in 2 different files
     
 * Option B
-    + Create a RMarkdown file including R source codes and markdown syntaxes (a plain text format)
+    + Create a RMarkdown file including R source codes and markdown syntax (a plain text format)
     + Output to PDF, Word or HTML
     + Pro: code and format in 1 file
     + Con: have to learn a new R package
@@ -39,7 +39,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 
 
 ## Introduction of RMarkdown
-* RMarkdown is a format that combines R source codes with markdown syntaxes
+* RMarkdown is a format that combines R source codes with markdown syntax
 
 * We can create rmd. file in RStudio 
 
@@ -64,7 +64,7 @@ R codes without markdown syntax |R codes written in chunks or inline
 <img src="images/1. Install rmarkdown.png" alt="OptionsPanes" style="width: 400px;"/>
 
 ## Installation and Basic 
-2 Open an rmd. file which creats HTML output
+2 Open an rmd. file which creates HTML output
 
 <img src="images/2. Open R Markdown.png" alt="OptionsPanes" style="width: 400px;"/>
 
@@ -83,7 +83,7 @@ Open 60_RMarkdown Example Unordered.rmd
 
 * At the top of the rmd. file
 
-* Embeded with lines of 3 dashes
+* Embedded with lines of 3 dashes
 
 * Change title, name and date
 
@@ -95,7 +95,7 @@ Open 60_RMarkdown Example Unordered.rmd
 
 Kit PDF by Review 60_RMarkdown Example Unordered.rmd
 
-* Embeded with lines of 3 left quotes
+* Embedded with lines of 3 left quotes
 
 <img src="images/0. R Chunk.png" alt="OptionsPanes" style="width: 400px;"/>
 

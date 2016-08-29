@@ -58,10 +58,6 @@ This is my preferred layout.
 
 <div class="columns-2">
 
-General options
-
-<img src="images/GeneralOptions.png" alt="MyLayout" style="width: 400px;"/>
-
 Appearance
 
 <img src="images/OptionsAppearance.png" alt="MyLayout" style="width: 400px;"/>
@@ -105,18 +101,36 @@ plot(X, Y)
 myFit <- lm(Y ~ X)
 ```
 
+## Keyboard shortcuts
+
+There is a metric load of keyboard shortcuts.
+
+Press ALT+SHIFT+K
+
+https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts
+https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf
+
 ## Task
 
-1. Run the script
+1. Step through the script one line at a time.
+2. Run the script
 2. Save it
 1. Close down RStudio
 2. Open it up again
 3. Find your script
 4. Run it
 5. Change the script so that you produce 10,000 observations
+6. Run the script
+
+More fun:
+
 7. Make the errors heteroskedastic
 8. Make the response term, Y, lognormal
 6. Run that script
+
+##
+
+All finished?
 
 ## Packages
 
@@ -127,6 +141,12 @@ myFit <- lm(Y ~ X)
 * Can access C or FORTRAN run-time libraries to improve performance
 
 ## Installation and loading
+
+Installing != loading
+
+Installing a package means downloading it from the interweb.
+
+Loading a package means loading your local copy into RAM.
 
 Installing something new
 
@@ -165,15 +185,41 @@ remove.packages("IdontWantThisAnymore")
 
 ## Don't make this complicated
 
->- _A package won't work if it isn't loaded with `library`._
 >- _You can't load a package if you haven't installed it._
 >- _You don't need to install a package more than once._
 >- _Turning off your computer or shutting down R won't remove a package._
+
+>- _A package won't work if it isn't loaded with `library`._
 >- _Unloading a package doesn't delete it._
 
 ## Exercise
 
 Install the `actuar` package.
+
+## General options
+
+General options
+
+<img src="images/GeneralOptions.png" alt="MyLayout" style="width: 400px;"/>
+
+## Code options
+
+<div class="columns-2">
+
+Code editing
+
+<img src="images/CodeEditing.png" alt="MyLayout" style="width: 400px;"/>
+
+Code display
+
+<img src="images/CodeDisplay.png" alt="MyLayout" style="width: 400px;"/>
+
+</div>
+
+## Code options (cont'd)
+
+<img src="images/CodeCompletion.png" alt="CodeCompletion" style="width: 400px:"/>
+
 
 ## A couple final thoughts
 

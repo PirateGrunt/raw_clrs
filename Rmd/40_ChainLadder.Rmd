@@ -3,7 +3,7 @@ title: 'ChainLadder'
 author: "Rajesh Sahasrabuddhe"
 output:
   ioslides_presentation:
-    logo: images\cas_logo.png
+    logo: images/cas_logo.png
     duration: 45
     fig_height: 3
     fig_width: 6
@@ -12,6 +12,10 @@ output:
   beamer_presentation:
     colortheme: dolphin
 ---
+
+```{r}
+library(methods)
+```
 
 ## Agenda
 
@@ -246,13 +250,13 @@ full_tri[,4] / full_tri[,3]
 ```
 
 ## Selected Loss Development Factors
-This has the potential to support the variability calcaulation from the [CLFM paper](http://www.variancejournal.org/issues/06-02/143.pdf)
+This has the potential to support the variability calculation from the [CLFM paper](http://www.variancejournal.org/issues/06-02/143.pdf)
 
 [Github issue](https://github.com/mages/ChainLadder/issues/23)
 
 
 ## Quarterly Triangles
-The `qpaid` and `qincurred` are included in ChainLadder to demonstrate how to deal with triangles with quarterly evlautions and annual periods.
+The `qpaid` and `qincurred` are included in ChainLadder to demonstrate how to deal with triangles with quarterly evaluations and annual periods.
 ```{r}
 # ?qpaid #not run
 dim(qpaid)
