@@ -133,7 +133,8 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
 <img src="images/4. 3. Markdown Syntax tables.png" alt="OptionsPanes" style="width: 400px;"/>
 
-## Reorder the R source codes and Markdown syntaxes and add more relavant ones
+## Task
+* Reorder the R source codes and Markdown syntaxes and add more relavant ones
 
 Open 60_RMarkdown Example Ordered.rmd. It contains the new project. 
 
@@ -143,12 +144,6 @@ Open 60_RMarkdown Example Ordered.rmd. It contains the new project.
 4. Additive Model
 5. Model Comparison and Selection
 
-## Create outputs of the new project 
-
-Kit 60_RMarkdown Example Ordered.pdf
-
-Kit 60_RMarkdown Example Ordered.word
-
-Kit 60_RMarkdown Example Ordered.html
+* Kit 60_RMarkdown Example Ordered.pdf, 60_RMarkdown Example Ordered.word and/or 60_RMarkdown Example Ordered.html
 
 ## Q & A
