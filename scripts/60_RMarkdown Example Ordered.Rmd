@@ -102,7 +102,7 @@ plt <- ggplot(dfUpper, aes(NetEP, IncrementalPaid, color = LagGroup)) + geom_poi
 plt + geom_smooth(method = "lm", se = FALSE)
 ```
 
-$IncrementalPaid = \beta_{0}+\beta_{1}*NetEP+\epsilon$ 
+$IncrementalPaid = \beta_{1}+\beta_{2}*NetEP+\epsilon$ 
 
 ### Residuals vs Predictions
 
