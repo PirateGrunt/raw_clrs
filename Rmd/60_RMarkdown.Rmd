@@ -57,21 +57,15 @@ R codes without markdown syntax |R codes written in chunks or inline
     
     <img src="images/0. Markdown Symtax.png" alt="OptionsPanes" style="width: 400px;"/>
 
-
-## Installation and Basic
-1 Open an R. file and install rmarkdown packages from CRAN 
-
-<img src="images/1. Install rmarkdown.png" alt="OptionsPanes" style="width: 400px;"/>
-
 ## Installation and Basic 
-2 Open an rmd. file which creates HTML output
+1 Open an rmd. file which creates HTML output
 
 <img src="images/2. Open R Markdown.png" alt="OptionsPanes" style="width: 400px;"/>
 
 <img src="images/2. Chose HTML.png" alt="OptionsPanes" style="width: 400px;"/>
 
 ## Installation and Basic 
-3 In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
+2 In the template rmd. file, run R codes, Knit HTML, Knit PDF or Knit Word
 
 <img src="images/3. Run.png" alt="OptionsPanes" style="width: 400px;"/>
 
