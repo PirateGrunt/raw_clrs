@@ -140,7 +140,7 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
     1. Data Cleaning and Summary: Can you display the dimension of the dataset? Top rows of the dataset? Column names of the dataset?
     2. Data Transformation and Visualization: Can you add some comments for the data transformation and visualization?
-    3. Chain Ladder: Can you add sub-lists to the items of the ordered list?
+    3. Chain Ladder: Can you add sub-lists to the ordered list?
     4. Additive Model: Can you change sub-lists to the sub-lists?
     5. Model Comparison and Selection: Can you only display inline codes in the table?
 
