@@ -133,17 +133,17 @@ Kit PDF by  60_RMarkdown Example Unordered.rmd
 
 <img src="images/4. 3. Markdown Syntax tables.png" alt="OptionsPanes" style="width: 400px;"/>
 
-## Task
-* Reorder the R source codes and Markdown syntaxes and add more relavant ones
+## Tasks
 
-Open 60_RMarkdown Example Ordered.rmd. It contains the new project. 
+* Reorder the R source codes and Markdown syntaxes 
 
-1. Data Cleaning and Summary
-2. Data Transformation and Visualization
-3. Chain Ladder
-4. Additive Model
-5. Model Comparison and Selection
+    + Open 60_RMarkdown Example Ordered.rmd. It contains the new project. 
+    + 1. Data Cleaning and Summary
+    + 2. Data Transformation and Visualization
+    + 3. Chain Ladder
+    + 4. Additive Model 
+    + 5. Model Comparison and Selection
 
-* Kit 60_RMarkdown Example Ordered.pdf, 60_RMarkdown Example Ordered.word and/or 60_RMarkdown Example Ordered.html
+* Kit PDF, Html and/or Word outputs
 
 ## Q & A
