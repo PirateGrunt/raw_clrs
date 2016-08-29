@@ -118,6 +118,7 @@ pltResid + geom_smooth(method = "lm")
 * Positive correlation with earned premium
 * Does it break the i.i.d. residual term assumptions?
     + Independence
+        + Independence
     + Individual
 
 ## 5. Model Comparison and Selection
