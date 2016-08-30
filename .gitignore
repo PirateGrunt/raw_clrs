@@ -14,3 +14,7 @@ vignettes/*.pdf
 .httr-oauth
 .Rproj.user
 Rmd/40_ChainLadder.html
+*.html
+*.pdf
+*.pdf
+scripts/60_RMarkdown_Example_Ordered.pdf
