@@ -10,7 +10,6 @@ tagline:          'R Actuarial Workshops'
 description:      'A page with basic information about workshops sponsored by the CAS'
 url:              http://pirategrunt.github.io/raw_clrs/
 baseurl:          /raw_clrs
-theme:            Cerulean
 
 author:
   name:           'Brian A. Fannin'
