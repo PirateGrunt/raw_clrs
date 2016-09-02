@@ -5,11 +5,11 @@ markdown:         Kramdown
 permalink:        pretty
 
 # Setup
-title:            raw
+title:            raw_clrs
 tagline:          'R Actuarial Workshops'
 description:      'A page with basic information about workshops sponsored by the CAS'
-url:              http://pirategrunt.github.io/raw/
-baseurl:          /raw
+url:              http://pirategrunt.github.io/raw_clrs/
+baseurl:          /raw_clrs
 theme:            Superhero
 
 author:
@@ -22,4 +22,4 @@ paginate:         5
 version:          1.0.0
 
 github:
-  repo:           https://github.com/PirateGrunt/raw
+  repo:           https://github.com/PirateGrunt/raw_clrs
