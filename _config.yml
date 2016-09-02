@@ -1,0 +1,25 @@
+# Dependencies
+markdown:         Kramdown
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            raw
+tagline:          'R Actuarial Workshops'
+description:      'A page with basic information about workshops sponsored by the CAS'
+url:              http://pirategrunt.github.io/raw/
+baseurl:          /raw
+theme:            Superhero
+
+author:
+  name:           'Brian A. Fannin'
+  url:            https://PirateGrunt.com
+
+paginate:         5
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/PirateGrunt/raw
