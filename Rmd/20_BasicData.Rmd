@@ -1,0 +1,243 @@
+---
+title: 'Basic Data Manipulation'
+author: "Brian A. Fannin"
+output:
+  slidy_presentation:
+    css: My.css
+    logo: images/cas_logo.png
+    duration: 45
+    fig_height: 3
+    fig_width: 6
+---
+
+```{r echo=FALSE}
+knitr::opts_knit$set(root.dir = "../")
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  fig.align="center",
+  fig.pos="t"
+)
+```
+
+## What happens now?
+
+1. Brief review of vector operations
+2. Data frames
+3. Reading and writing data
+
+## Vector review
+
+```{r}
+library(raw)
+data(NJM_WC)
+
+paidLoss <- NJM_WC$CumulativePaid
+summary(paidLoss)
+
+ay <- NJM_WC$AccidentYear
+lag <- NJM_WC$Lag
+dy <- NJM_WC$DevelopmentYear
+ibnr <- NJM_WC$IBNR
+incurredLoss <- NJM_WC$CumulativeIncurred
+```
+
+## Quick task
+
+1. How much IBNR was held for development year 1997?
+2. What was the case reserve held for accident year 1990 development lag 4?
+
+## Answer
+
+```{r}
+sum(ibnr[dy == 1997])
+
+whichCell <- ay == 1990 & lag == 4
+
+incurredLoss[whichCell] - paidLoss[whichCell]
+
+whichCell
+```
+
+## Data frames
+
+A data frame is a list of vectors. This is basically the same concept as a table in Excel or a relational database.
+
+Run the following lines:
+
+```{r results='hide'}
+summary(NJM_WC)
+str(NJM_WC)
+```
+
+## Base operations - columns
+
+Use `[ ]` and `$` to access elements of a data frame. Note that we need to include the comma to indicate that we're returning both rows and columns.
+
+The following statements are equivalent:
+
+```{r}
+var1 <- NJM_WC$CumulativePaid
+var2 <- NJM_WC[, "CumulativePaid"]
+var3 <- NJM_WC[, 7]
+```
+
+## Base operations - rows
+
+Filtering data by row works the same as with vectors. 
+
+```{r}
+upperTri <- NJM_WC$DevelopmentYear <= 1997
+dfUpper <- NJM_WC[upperTri, ]
+```
+
+You can also use subset:
+
+```{r}
+dfUpper <- subset(NJM_WC, DevelopmentYear <= 1997)
+```
+
+## `dplyr`
+
+`dplyr` has changed my life and it will change yours. Centered around a core grammar of data manipulation.
+
+| verb | outcome
+|-------|-------------------------------------------|
+| `select` | Returns columns that are named, or _excludes_ named columns|
+| `filter` | Returns rows that meet a certain criteria |
+| `mutate` | Creates a new column    |
+| `group_by` | All subsequent operations are applied at the group level |
+|  `summarise` | Aggregates a set of data to a single value |
+| `arrange` | Orders the rows of a data frame |
+| `slice`  | Returns rows by position |
+
+The `%>%` operator will take the output of one operation as the input for the next operation.
+
+## Quick example
+
+```{r echo=FALSE}
+suppressMessages(library(dplyr))
+```
+
+```{r }
+library(dplyr)
+dfEx <- NJM_WC %>% 
+  group_by(AccidentYear) %>% 
+  summarise(MaxPaid = max(CumulativePaid)
+            , MinPaid = min(CumulativePaid)
+            , AvgPaid = mean(CumulativePaid))
+```
+
+```{r results='asis', echo=FALSE}
+pander::pandoc.table(dfEx, big.mark=",")
+```
+
+## `dplyr` in action
+
+Identify 5 companies with the highest average paid for the first development year.
+
+```{r}
+data("wkcomp")
+
+dfAvgPaid <- wkcomp %>%
+  raw::CasColNames(FALSE) %>% 
+  filter(Lag == 1) %>% 
+  group_by(Company) %>% 
+  summarise(AvgPaid = mean(CumulativePaid)) %>% 
+  arrange(desc(AvgPaid)) %>% 
+  slice(1:5)
+```
+
+```{r results='asis', echo=FALSE}
+pander::pandoc.table(dfAvgPaid, big.mark=",")
+```
+
+## Task
+
+1. Add a column to the New Jersey Manufacturer's data to indicate whether the cell is in the upper portion of the triangle.
+2. Create a new data frame which includes only the upper triangle.
+
+Additional tasks
+
+1. Eliminate the GroupCode and Company columns from your data frame.
+2. Form a time series which shows the ratio of net to direct earned premium. Note: you'll need to use the `unique` function.
+3. Fit a linear model to this time series. Is there any relationship between cession ratio and accident year?
+
+## Answer
+
+```{r}
+library(dplyr)
+
+dfUpper <- NJM_WC %>% 
+  mutate(Upper = DevelopmentYear <= 1997) %>% 
+  filter(Upper)
+```
+
+## Additional answers
+
+```{r}
+dfMyData <- NJM_WC %>% 
+  select(-GroupCode, -Company)
+
+dfTimeSeries <- NJM_WC %>% 
+  mutate(CessionPct = NetEP / DirectEP) %>% 
+  unique()
+
+myFit <- lm(CessionPct ~ AccidentYear, data = dfTimeSeries)
+```
+
+## Saving and reading data
+
+Saving data
+
+```{r}
+write.csv(NJM_WC, "MyData.csv", row.names = FALSE)
+```
+
+Reading data
+
+```{r}
+dfMyData <- read.csv("MyData.csv", stringsAsFactors = FALSE)
+```
+
+## The working directory
+
+Source of much confusion and frustration.
+
+<img src="images/HadleyDoingItWrong.png" alt="MyLayout" style="width: 800px;"/>
+
+<img src="images/HadleyGetWD.png" alt="MyLayout" style="width: 800px;"/>
+
+## The working directory
+
+In keeping with Hadley's advice, don't execute a line like the following:
+
+```{r eval=FALSE}
+setwd("This_is_where_my_project_is")
+```
+
+Get into the habit of only setting that via the RStudio GUI, or - even better! - learn to use projects in RStudio.
+
+<img src="images/SetWD_GUI.png" alt="MyLayout" style="width: 800px;"/>
+
+Use relative pathnames to access files:
+
+```{r eval=FALSE}
+read.csv("./data/MyData.csv")
+save(importantStuff, file = "./MyImportantStuff/Stuff.rda")
+```
+
+## Task
+
+1. Within your working directory create a new folder called "data".
+2. Save the upper triangle data frame to this directory.
+
+## Answer
+
+```{r}
+if (!dir.exists("./data/")) dir.create("./data/")
+
+write.csv(dfUpper, "./data/upper.csv", row.names = FALSE)
+
+dfUpper <- read.csv("./data/upper.csv", stringsAsFactors = FALSE)
+```

@@ -1,0 +1,149 @@
+---
+title: 'RMarkdown'
+author: "Emma Li"
+output:
+  slidy_presentation:
+    duration: 45
+    fig_height: 3
+    fig_width: 6
+  beamer_presentation:
+    colortheme: dolphin
+---
+
+## Create a new project
+1. Data Cleaning and Summary
+2. Data Transformation and Visualization
+3. Chain Ladder
+4. Additive Model
+5. Model Comparison and Selection
+
+## Implementation
+* Option A
+    + Calculate new R objects, such as statistics, new variables, tables, plots and etc. in RStudio
+    + Copy and paste them into PowerPoint. 
+    + Pro: easy to make adjustment of the formats
+    + Con: time consuming when coding and formatting in 2 different files
+    
+* Option B
+    + Create a RMarkdown file including R source codes and markdown syntax (a plain text format)
+    + Output to PDF, Word or HTML
+    + Pro: code and format in 1 file
+    + Con: have to learn a new R package
+    
+R                               | R Markdown
+--------------------------------|-------------------------------------------
+Run in R base system or RStudio |Run in RStudio 
+file.R                          |file.rmd       
+R codes without markdown syntax |R codes written in chunks or inline   
+"Run" (Control+R for Shortcut)  |"Run" or "Knit HTML" or "Knit PDF" or "Knit Word"
+
+
+## Introduction of RMarkdown
+* RMarkdown is a format that combines R source codes with markdown syntax
+
+* We can create file.rmd in RStudio 
+
+* In a file.rmd, there are 3 components
+
+    + 1. YAML Header: what type of document to build 
+    
+    <img src="images/0. YAML Header.png" alt="OptionsPanes" style="width: 400px;"/>
+
+    + 2. R Chunk: tables, plots, regressions by R source codes
+    
+    <img src="images/0. R Chunk.png" alt="OptionsPanes" style="width: 400px;"/>
+
+    + 3. Markdown Symtax: headers, equations, images, lists, tables
+    
+    <img src="images/0. Markdown Symtax.png" alt="OptionsPanes" style="width: 400px;"/>
+
+## Installation and Basic 
+1 Open an file.rmd which creates HTML output
+
+<img src="images/2. Open R Markdown.png" alt="OptionsPanes" style="width: 400px;"/>
+
+<img src="images/2. Chose HTML.png" alt="OptionsPanes" style="width: 400px;"/>
+
+## Installation and Basic 
+2 In the template file.rmd, run R codes, Knit HTML, Knit PDF or Knit Word
+
+<img src="images/3. Run.png" alt="OptionsPanes" style="width: 400px;"/>
+
+## 1 YAML Header
+
+Open 60_RMarkdown Example Unordered.rmd
+
+<img src="images/4. 1. YAML.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* At the top of the file.rmd
+
+* Embedded with lines of 3 dashes
+
+* Change title, name and date
+
+* Change output from "html_document" to "word_document" or "pdf_document""
+
+* YAML options, http://rmarkdown.rstudio.com/pdf_document_format.html
+
+## 2 R Chunk
+
+Kit PDF by Review 60_RMarkdown Example Unordered.rmd
+
+* Embedded with lines of 3 left quotes
+
+<img src="images/0. R Chunk.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Chunk options, http://yihui.name/knitr/options/
+
+    + warning=FALSE does not print warnings in the output document (warning=TRUE is default)
+
+    + message=FALSE does not print message in the output document (similar to warning, error=TRUE is default)
+
+    + echo=FASLE turns off the R source code in the output file (echo=TRUE is default)
+
+* Besides, inline codes outside of the R chunks can still print results
+
+    <img src="images/4. 2. R Chunk inline.png" alt="OptionsPanes" style="width: 400px;"/> can print <img src="images/4. 2. R Chunk inline 2.png" alt="OptionsPanes" style="width: 400px;"/>
+    
+## 3 Markdown Syntax
+
+Kit PDF by  60_RMarkdown Example Unordered.rmd
+
+* Header
+
+<img src="images/4. 3. Markdown Syntax header.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Equation
+
+<img src="images/4. 3. Markdown Syntax equation.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Image
+
+<img src="images/4. 3. Markdown Syntax images.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Unordered List
+
+<img src="images/4. 3. Markdown Syntax unorder list.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Ordered List 
+
+<img src="images/4. 3. Markdown Syntax order list.png" alt="OptionsPanes" style="width: 400px;"/>
+
+* Table
+
+<img src="images/4. 3. Markdown Syntax tables.png" alt="OptionsPanes" style="width: 400px;"/>
+
+## Tasks
+
+* Open 60_RMarkdown Example Ordered.rmd: Can I output Html document?
+* Reorder the R source codes and Markdown syntaxes to create a new projects: Can I see the R source codes, warnings and messages in the output?   
+
+    1. Data Cleaning and Summary: Can you display the dimension of the dataset? Top rows of the dataset? Column names of the dataset?
+    2. Data Transformation and Visualization: Can you add some comments for the data transformation and visualization?
+    3. Chain Ladder: Can you add sub-lists to the ordered list?
+    4. Additive Model: Can you change sub-lists to the sub-lists?
+    5. Model Comparison and Selection: Can you dosplay and only display inline codes in the table?
+
+* Kit PDF, Html and/or Word outputs: Can you change the output types manually? 
+
+## Q & A
