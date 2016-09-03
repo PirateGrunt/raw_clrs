@@ -6,8 +6,8 @@ permalink:        pretty
 
 # Setup
 title:            raw_clrs
-tagline:          'R Actuarial Workshops'
-description:      'A page with basic information about workshops sponsored by the CAS'
+tagline:          'CLRS'
+description:      'Information about the R Workshop at the CLRS'
 url:              http://pirategrunt.github.io/raw_clrs/
 baseurl:          /raw_clrs
 

@@ -16,4 +16,4 @@ install.packages("raw", dependencies = "Suggests")
 
 You must be connected to the internet for this to work. Further, you may have an issue if you have a firewall or something which restricts access to particular sites. On my machine this took quite a while. There will be various messages and warnings that might look scary. Don't worry.
 
-If this doesnt work, don't panic. Give me a call and I'll try to sort things out before you get to Chicago.
+If this doesn't work, don't panic. Give me a call and I'll try to sort things out before you get to Chicago.
