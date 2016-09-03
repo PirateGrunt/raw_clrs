@@ -11,42 +11,17 @@ This site will be updated continually leading up to the day of the workshop. If 
 
 ### Workshop Schedule
 
-## AM
-* Introduding R
-    * History
-    * Installation
-* Basics
-    * Entering commands
-    * Getting help
-    * The working directory
-    * Your first script
-* Not so basics
-    * Visualization
-    * Vectors
-    * Packages
-* Data
-    * Data types
-    * From vectors to matrices and lists
-    * Data frames
-    * Getting data
-* Basic programming concepts
-    * Writing your own functions
-    * Control structures
-* Linear models
-
-## PM
-* AM recap
-    * Fit another linear model
-    * Load some data
-* Loss reserving with R
-    * ChainLadder
-    * MRMR
-* Loss distributions
-* Advanced modelling
-    * Simulation
-    * GLMs
-    * Basic machine learning
-* Advanced visualization
-    * Multivariate visualization
-    * Maps
-* Close
+|--------|--------|--------------|
+| Start  | End    | Item         |
+|  9:00  |   9:45 | Getting Started |
+|  9:45  |  10:30 | Basic Data Manipulation |
+| 10:30  |  11:00 | Break |
+| 11:00  |  12:00 | Visualization |
+| 12:00  |  12:30 | AM Wrap-up |
+| 12:30  |   1:30 | Lunch |
+|  1:30  |   2:30 | Chain ladder |
+|  2:30  |   3:00 | Reserving w/o Chain ladder |
+|  3:00  |   3:15 | Break |
+|  3:15  |   4:00 | Reserving wrap-up |
+|  4:00  |   4:45 | RMarkdown |
+|  4:45  |   5:00 | Close |
