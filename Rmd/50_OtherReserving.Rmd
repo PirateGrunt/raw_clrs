@@ -3,6 +3,7 @@ title: 'Reserving w/o ChainLadder'
 author: "Brian A. Fannin"
 output:
   slidy_presentation:
+    css: My.css
     duration: 45
     fig_height: 3
     fig_width: 6
@@ -12,6 +13,11 @@ output:
 
 ```{r echo = FALSE}
 knitr::opts_knit$set(root.dir = "../")
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  fig.pos="t"
+)
 ```
 
 ## Reserving w/o ChainLadder
@@ -25,9 +31,14 @@ knitr::opts_knit$set(root.dir = "../")
 
 * Incremental development amounts are a linear function of some exposure measure.
 * Similar to Bornhuetter-Ferguson, but doesn't require an a priori loss ratio assumption.
-* Doesn't expect it to work as well if earned premium has not been on-leveled.
+* Don't expect it to work as well if earned premium has not been on-leveled.
 
 ## Form incrementals
+
+```{r echo=FALSE, results='hide'}
+suppressPackageStartupMessages(library(dplyr))
+```
+
 
 ```{r}
 library(dplyr)
@@ -58,6 +69,11 @@ dfUpper <- dfUpper %>%
 
 
 ## Observe our data - additive
+
+```{r echo=FALSE}
+suppressPackageStartupMessages(library(ggplot2))
+```
+
 
 ```{r}
 library(ggplot2)
@@ -119,7 +135,6 @@ dfUpper <- dfUpper %>%
          , R_StandardPaidAM = rstandard(fitPaidAM))
 ```
 
-
 ## Plots
 
 * Plot the residuals as a function of the predicted value.
@@ -141,17 +156,65 @@ pltResid + geom_smooth(method = "lm")
 * Which model has a better F statistic?
 * What should we consider when comparing our models? How could adjust for this?
 
+
+## Model comparison (cont'd)
+
+We can inspect the printed output from `summary`. You can also access diagnostic tests directly.
+
+```{r}
+summary(fitPaidAM)$fstatistic
+summary(fitPaidCL)$fstatistic
+```
+
 ## Tasks
 
 * Form incrementals and priors for the completed triangle for NJM_WC
 * Predict values for each cell using the fit you constructed _on the upper triangle_.
 * Which model performs better?
 
+## Answers
+
+```{r}
+library(raw)
+data(NJM_WC)
+```
+
+```{r }
+NJM_WC <- NJM_WC %>% 
+  arrange(AccidentYear, Lag) %>% 
+  mutate(IncrementalPaid = CumulativePaid - lag(CumulativePaid), 
+         IncrementalPaid = ifelse(Lag == 1, CumulativePaid, IncrementalPaid),
+         PriorCumulativePaid = dplyr::lag(CumulativePaid), 
+         PriorCumulativePaid = ifelse(Lag == 1, NA, PriorCumulativePaid),
+         LagGroup = factor(Lag)) 
+```
+
+## Answers - new predictions
+
+```{r }
+NJM_WC$PredictAM <- predict(fitPaidAM, newdata = NJM_WC)
+NJM_WC$PredictCL <- NA
+LagGt1 <- NJM_WC$Lag > 1
+NJM_WC$PredictCL[LagGt1] <- predict(fitPaidCL, newdata = NJM_WC[LagGt1, ])
+```
+
+## Answers - model comparisons
+
+```{r}
+NJM_WC <- NJM_WC %>% 
+  mutate(AM_Error = PredictAM - IncrementalPaid, 
+         CL_Error = PredictCL - IncrementalPaid, 
+         Upper = DevelopmentYear <= 1997)
+
+sqrt(sum(NJM_WC$AM_Error[!NJM_WC$Upper]^2))
+sqrt(sum(NJM_WC$CL_Error[!NJM_WC$Upper]^2))
+```
+
 ## MRMR
 
 The functionality above is incorporated in the MRMR package. The beta version is on GitHub and may be installed using the following:
 
-```{r}
-
+```{r eval=FALSE}
+devtools::install_github("PirateGrunt/MRMR")
 ```
 

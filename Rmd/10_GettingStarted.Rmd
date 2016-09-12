@@ -35,7 +35,7 @@ Patrick Burns
 
 Raise your hand if you need help installing
 
-## RStudio
+## Why RStudio?
 
 * Edit scripts
 * View multiple scripts at once
@@ -63,6 +63,39 @@ Appearance
 <img src="images/OptionsAppearance.png" alt="MyLayout" style="width: 400px;"/>
 
 </div>
+
+## General options
+
+<div class="columns-2">
+
+<img src="images/GeneralOptions.png" alt="MyLayout" style="width: 400px;"/>
+
+__Strong recommendations__
+
+* _Don't_ restore .RData
+* _Never_ save workspace to .RData on exit.
+
+</div>
+
+<!--
+## Code options
+
+<div class="columns-2">
+
+Code editing
+
+<img src="images/CodeEditing.png" alt="MyLayout" style="width: 400px;"/>
+
+Code display
+
+<img src="images/CodeDisplay.png" alt="MyLayout" style="width: 400px;"/>
+
+</div>
+
+## Code options (cont'd)
+
+<img src="images/CodeCompletion.png" alt="CodeCompletion" style="width: 400px:"/>
+-->
 
 ## Help
 
@@ -103,7 +136,7 @@ myFit <- lm(Y ~ X)
 
 ## Keyboard shortcuts
 
-There is a metric load of keyboard shortcuts.
+There is a metric sheep load of keyboard shortcuts.
 
 Press ALT+SHIFT+K
 
@@ -160,7 +193,7 @@ Loading an installed package
 library(MRMR)
 ```
 
-## Unloading and/or removing installed package
+## Unloading and removing packages
 
 Unloading
 
@@ -195,31 +228,6 @@ remove.packages("IdontWantThisAnymore")
 ## Exercise
 
 Install the `actuar` package.
-
-## General options
-
-General options
-
-<img src="images/GeneralOptions.png" alt="MyLayout" style="width: 400px;"/>
-
-## Code options
-
-<div class="columns-2">
-
-Code editing
-
-<img src="images/CodeEditing.png" alt="MyLayout" style="width: 400px;"/>
-
-Code display
-
-<img src="images/CodeDisplay.png" alt="MyLayout" style="width: 400px;"/>
-
-</div>
-
-## Code options (cont'd)
-
-<img src="images/CodeCompletion.png" alt="CodeCompletion" style="width: 400px:"/>
-
 
 ## A couple final thoughts
 

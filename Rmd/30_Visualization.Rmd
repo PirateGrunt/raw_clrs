@@ -11,19 +11,27 @@ output:
     colortheme: dolphin
 ---
 
+```{r echo=FALSE}
+knitr::opts_knit$set(root.dir = "../")
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  fig.pos="t"
+)
+```
+
 ## Base plotting
 
 * Gets the job done with a minimum of fuss. 
 * Advanced options and visual elements are possible, but a bit tough.
 
-##
+## A basic base plot
 
 ```{r}
 dfUpper <- read.csv("./data/upper.csv", stringsAsFactors = FALSE)
 
 plot(dfUpper$CumulativePaid, dfUpper$NetEP)
 ```
-
 
 ## ggplot2
 
@@ -34,7 +42,7 @@ Particularly well suited for multi-dimensional, multivariate analysis.
 Requires 3 things:
 
 1. Data
-2. Aesthetics
+2. Mapped aesthetics
 3. Layers
 
 ## Data
@@ -50,7 +58,7 @@ class(basePlot)
 
 ## Aesthetics
 
-Aesthetics are anything visible on the plot. Added with the `aes` function. Data will be mapped to visual elements.
+Aesthetics are anything visible on the plot. When an aesthetic is "mapped", it means that the data will define how the aesthetic appears. We'll map our aesthetics with the `aes` function.
 
 ```{r }
 basePlot <- basePlot + aes(x = PolicyYear, y = NumClaims, color=Region)
@@ -122,6 +130,11 @@ p
 ```{r}
 p <- ggplot(RegionExperience, aes(x = PolicyYear, y = NumClaims, group=Region, color=Region)) + geom_point()
 p + geom_smooth(se = FALSE)
+```
+
+## Linear smoother
+
+```{r }
 p + geom_smooth(method = lm)
 ```
 
@@ -156,12 +169,16 @@ dfTwo <- dfTwo %>%
   mutate(PaidLR = CumulativePaid / NetEP)
 ```
 
-## 
+## Results by company, by lag
 
 ```{r}
 plt <- ggplot(dfTwo, aes(NetEP, CumulativePaid, color = factor(Lag))) + geom_point() + facet_wrap(~Company, scales="free")
 plt
+```
 
+## Results with a smoother
+
+```{r }
 plt + geom_smooth(method = lm, se=FALSE)
 ```
 
@@ -170,10 +187,13 @@ plt + geom_smooth(method = lm, se=FALSE)
 ```{r}
 pltDensity <- ggplot(filter(dfTwo, Lag == 10), aes(PaidLR, fill = Company)) + geom_density(alpha = 0.7)
 pltDensity
-
-pltDensity + facet_wrap(~ Company)
 ```
 
+## Density w/facet
+
+```{r }
+pltDensity + facet_wrap(~ Company)
+```
 
 <!--
 ## Maps!

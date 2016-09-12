@@ -10,7 +10,17 @@ output:
     fig_width: 6
 ---
 
-##
+```{r echo=FALSE}
+knitr::opts_knit$set(root.dir = "../")
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  fig.align="center",
+  fig.pos="t"
+)
+```
+
+## What happens now?
 
 1. Brief review of vector operations
 2. Data frames
@@ -22,14 +32,14 @@ output:
 library(raw)
 data(NJM_WC)
 
+paidLoss <- NJM_WC$CumulativePaid
+summary(paidLoss)
+
 ay <- NJM_WC$AccidentYear
 lag <- NJM_WC$Lag
 dy <- NJM_WC$DevelopmentYear
 ibnr <- NJM_WC$IBNR
-paidLoss <- NJM_WC$CumulativePaid
 incurredLoss <- NJM_WC$CumulativeIncurred
-
-summary(paidLoss)
 ```
 
 ## Quick task
@@ -51,7 +61,7 @@ whichCell
 
 ## Data frames
 
-A data frame is a set of vectors. This is basically the same concept as a table in Excel or a relational database.
+A data frame is a list of vectors. This is basically the same concept as a table in Excel or a relational database.
 
 Run the following lines:
 
@@ -87,8 +97,9 @@ You can also use subset:
 dfUpper <- subset(NJM_WC, DevelopmentYear <= 1997)
 ```
 
-
 ## `dplyr`
+
+`dplyr` has changed my life and it will change yours. Centered around a core grammar of data manipulation.
 
 | verb | outcome
 |-------|-------------------------------------------|
@@ -97,6 +108,8 @@ dfUpper <- subset(NJM_WC, DevelopmentYear <= 1997)
 | `mutate` | Creates a new column    |
 | `group_by` | All subsequent operations are applied at the group level |
 |  `summarise` | Aggregates a set of data to a single value |
+| `arrange` | Orders the rows of a data frame |
+| `slice`  | Returns rows by position |
 
 The `%>%` operator will take the output of one operation as the input for the next operation.
 
@@ -191,10 +204,27 @@ dfMyData <- read.csv("MyData.csv", stringsAsFactors = FALSE)
 
 Source of much confusion and frustration.
 
-```{r eval=FALSE}
-getwd()
+<img src="images/HadleyDoingItWrong.png" alt="MyLayout" style="width: 800px;"/>
 
-setwd("SomeDirectory/SomeFolder")
+<img src="images/HadleyGetWD.png" alt="MyLayout" style="width: 800px;"/>
+
+## The working directory
+
+In keeping with Hadley's advice, don't execute a line like the following:
+
+```{r eval=FALSE}
+setwd("This_is_where_my_project_is")
+```
+
+Get into the habit of only setting that via the RStudio GUI, or - even better! - learn to use projects in RStudio.
+
+<img src="images/SetWD_GUI.png" alt="MyLayout" style="width: 800px;"/>
+
+Use relative pathnames to access files:
+
+```{r eval=FALSE}
+read.csv("./data/MyData.csv")
+save(importantStuff, file = "./MyImportantStuff/Stuff.rda")
 ```
 
 ## Task

@@ -123,8 +123,8 @@ pltResid + geom_smooth(method = "lm")
 ## 5. Model Comparison and Selection
 Models|R Square                        |Adjusted R Square
 ------|--------------------------------|----------------------------------------
-AM    |`r summary(fitPaidAM)$r.squared`|`r summary(fitPaidAM)$adj.r.squared`
-CL    |`r summary(fitPaidCL)$r.squared`|`r summary(fitPaidCL)$adj.r.squared`
+AM    |summary(fitPaidAM)$r.squared    |`summary(fitPaidAM)$adj.r.squared`
+CL    |r summary(fitPaidCL)$r.squared  |`r summary(fitPaidCL)$adj.r.squared`
 
 # Chain Ladder model is chosen!
 
