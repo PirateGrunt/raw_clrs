@@ -61,8 +61,15 @@ head(njm_wc_df)
 
 ## ------------------------------------------------------------------------
 ggplot(data = njm_wc_df, mapping = aes(x = interval, y = development_factor, 
-  color = accident_year)) + geom_point()
+                                       color = accident_year)) + geom_point()
 
+atamat <- ata(njm_wc_tri, colname.sep = " to ")
+atamat
+atadf <- as.LongTriangle(atamat, varnames = c("accident_year", "interval"), 
+                         value.name = "development_factor")
+head(atadf)
+ggplot(data = atadf, mapping = aes(x = interval, y = development_factor, 
+                                   color = accident_year)) + geom_point()
 
 ## ------------------------------------------------------------------------
 liab_tri <- as.triangle(Triangle = 
@@ -85,8 +92,13 @@ unname(1 + (clark$THETAG[2]/15)^clark$THETAG[1] /
 init_df <- MackChainLadder(Triangle = liab_tri)$f
 sel_df <- init_df
 sel_df[3] <- 1.5
-alphas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
-full_tri <- predict(chainladder(liab_tri, delta = alphas))
+deltas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
+full_tri <- predict(chainladder(liab_tri, delta = deltas))
+
+# Total standard error is about 309/187 = 1.75 times greater 
+# using CLFM method than with plain Mack method
+MackChainLadder(liab_tri, est.sigma = "Mack", mse.method = "Mack") # plain Mack
+MackChainLadder(liab_tri, alpha = 2 - deltas, est.sigma = "Mack", mse.method = "Mack")  # CLFM
 
 ## ------------------------------------------------------------------------
 full_tri[7:10,1:5]
