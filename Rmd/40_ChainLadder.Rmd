@@ -13,7 +13,7 @@ output:
     colortheme: dolphin
 ---
 
-```{r}
+```{r include=FALSE}
 library(methods)
 ```
 
@@ -133,7 +133,7 @@ names(njm_wc_df)[1:9] <- paste(1:9, "to", 2:10)
 
 ## Exercise 1    
 ```{r}
-njm_wc_df <- gather(njm_wc_df, key = interval, value = development_factor, 1:9, 
+njm_wc_df <- tidyr::gather(njm_wc_df, key = interval, value = development_factor, 1:9, 
   na.rm = TRUE)
 
 head(njm_wc_df)
@@ -146,6 +146,39 @@ ggplot(data = njm_wc_df, mapping = aes(x = interval, y = development_factor,
   color = accident_year)) + geom_point()
 
 ```
+
+
+## Development Factors
+In Exercise 1, we calculated development factors by manipulating data structures using `[`, `mutate`, `paste`, and `gather`
+
+We didn't <span class="blue" style: color="blue">**need**</span> to do that since `ChainLadder` offers the `ata` function. 
+
+```{r}
+head(njm_wc_df)
+```
+
+
+## Development Factors
+
+```{r ata function, echo=TRUE}
+ata_dfs <- ata(njm_wc_tri); ata_dfs
+##also summary(ata_dfs) or print(ata_dfs)
+```
+
+## Development Factors
+
+Note that these objects have class `ata` which has certain attributes.
+
+```{r echo=TRUE}
+str(ata_dfs)
+```
+
+## Development Factors
+```{r}
+class(ata_dfs)
+attr(x = ata_dfs, which = 'vwtd')
+```
+
 
 
 ## Actuarial Projection Models
@@ -239,8 +272,8 @@ The `CLFMdelta` function
 init_df <- MackChainLadder(Triangle = liab_tri)$f
 sel_df <- init_df
 sel_df[3] <- 1.5
-alphas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
-full_tri <- predict(chainladder(liab_tri, delta = alphas))
+deltas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
+full_tri <- predict(chainladder(liab_tri, delta = deltas))
 ```
 ## Selected Loss Development Factors
 
@@ -252,7 +285,24 @@ full_tri[,4] / full_tri[,3]
 ## Selected Loss Development Factors
 This has the potential to support the variability calculation from the [CLFM paper](http://www.variancejournal.org/issues/06-02/143.pdf)
 
-[Github issue](https://github.com/mages/ChainLadder/issues/23)
+[Github issue](https://github.com/mages/ChainLadder/issues/23)  
+
+(Thanks to Dan Murphy for the following)
+```{r}
+clfm <- MackChainLadder(liab_tri, alpha = 2 - deltas, est.sigma = "Mack", 
+  mse.method = "Mack")  # CLFM
+clfm$Total.Mack.S.E
+```
+## Comparisons to Mack
+
+```{r}
+# Total standard error is about 309/178 = 1.75 times greater 
+# using CLFM method than with plain Mack method
+mack <- MackChainLadder(liab_tri, est.sigma = "Mack", mse.method = "Mack") # plain Mack
+mack$Total.Mack.S.E
+```
+
+
 
 
 ## Quarterly Triangles
@@ -267,8 +317,7 @@ Paid <- matrix(NA, n, n) # create a matrix with NAs
 Paid[seq(from = 1, to = n, by = 4),] <- qpaid # fill in every 4th row with the annual data
 ```
 
-## Questions??
+## Questions?
 
 Rajesh Sahasrabuddhe  
-215 246 1028  
-[Write me!](mailto:rajesh.sahasrabuddhe@oliverwyman.com)
+[rajesh.sahasrabuddhe@oliverwyman.com](mailto:rajesh.sahasrabuddhe@oliverwyman.com)
