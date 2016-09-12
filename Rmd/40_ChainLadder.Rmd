@@ -13,7 +13,7 @@ output:
     colortheme: dolphin
 ---
 
-```{r, include=FALSE}
+```{r}
 library(methods)
 ```
 
@@ -267,7 +267,8 @@ Paid <- matrix(NA, n, n) # create a matrix with NAs
 Paid[seq(from = 1, to = n, by = 4),] <- qpaid # fill in every 4th row with the annual data
 ```
 
-## Questions?
+## Questions??
 
 Rajesh Sahasrabuddhe  
-[rajesh.sahasrabuddhe@oliverwyman.com](mailto:rajesh.sahasrabuddhe@oliverwyman.com)
+215 246 1028  
+[Write me!](mailto:rajesh.sahasrabuddhe@oliverwyman.com)
