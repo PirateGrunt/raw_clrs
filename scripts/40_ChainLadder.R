@@ -1,4 +1,4 @@
-## ------------------------------------------------------------------------
+## ----include=FALSE-------------------------------------------------------
 library(methods)
 
 ## ---- echo=TRUE, message=FALSE, warning=FALSE, results='asis'------------
@@ -53,7 +53,7 @@ njm_wc_df <- dplyr::mutate(njm_wc_df, accident_year = as.character(1988:1997))
 names(njm_wc_df)[1:9] <- paste(1:9, "to", 2:10)
 
 ## ------------------------------------------------------------------------
-njm_wc_df <- gather(njm_wc_df, key = interval, value = development_factor, 1:9, 
+njm_wc_df <- tidyr::gather(njm_wc_df, key = interval, value = development_factor, 1:9, 
   na.rm = TRUE)
 
 head(njm_wc_df)
@@ -63,6 +63,20 @@ head(njm_wc_df)
 ggplot(data = njm_wc_df, mapping = aes(x = interval, y = development_factor, 
   color = accident_year)) + geom_point()
 
+
+## ------------------------------------------------------------------------
+head(njm_wc_df)
+
+## ----ata function, echo=TRUE---------------------------------------------
+ata_dfs <- ata(njm_wc_tri); ata_dfs
+##also summary(ata_dfs) or print(ata_dfs)
+
+## ----echo=TRUE-----------------------------------------------------------
+str(ata_dfs)
+
+## ------------------------------------------------------------------------
+class(ata_dfs)
+attr(x = ata_dfs, which = 'vwtd')
 
 ## ------------------------------------------------------------------------
 liab_tri <- as.triangle(Triangle = 
@@ -85,12 +99,23 @@ unname(1 + (clark$THETAG[2]/15)^clark$THETAG[1] /
 init_df <- MackChainLadder(Triangle = liab_tri)$f
 sel_df <- init_df
 sel_df[3] <- 1.5
-alphas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
-full_tri <- predict(chainladder(liab_tri, delta = alphas))
+deltas <- CLFMdelta(Triangle = liab_tri, selected = sel_df[1:9])
+full_tri <- predict(chainladder(liab_tri, delta = deltas))
 
 ## ------------------------------------------------------------------------
 full_tri[7:10,1:5]
 full_tri[,4] / full_tri[,3]
+
+## ------------------------------------------------------------------------
+clfm <- MackChainLadder(liab_tri, alpha = 2 - deltas, est.sigma = "Mack", 
+  mse.method = "Mack")  # CLFM
+clfm$Total.Mack.S.E
+
+## ------------------------------------------------------------------------
+# Total standard error is about 309/178 = 1.75 times greater 
+# using CLFM method than with plain Mack method
+mack <- MackChainLadder(liab_tri, est.sigma = "Mack", mse.method = "Mack") # plain Mack
+mack$Total.Mack.S.E
 
 ## ------------------------------------------------------------------------
 # ?qpaid #not run

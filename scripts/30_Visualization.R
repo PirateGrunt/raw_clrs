@@ -1,8 +1,8 @@
 ## ----echo=FALSE----------------------------------------------------------
+knitr::opts_knit$set(root.dir = "../")
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
-  cache = TRUE, 
   fig.pos="t"
 )
 
